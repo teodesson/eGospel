@@ -9,7 +9,6 @@ Sub-projects :
 * service : contains '@Service' and '@Repository'
 * web : contains '@Controller', HTML, JavaScript, etc
 
-
 ## Automated Test ##
 
 Automated testing used : 
@@ -17,19 +16,22 @@ Automated testing used :
 * service : normal JUnit with failsafe plugin to be executed on integration-test phase
 
 * web : rest-assured
-
 	* http://code.google.com/p/rest-assured/wiki/Usage 
 	* http://www.hascode.com/2011/10/testing-restful-web-services-made-easy-using-the-rest-assured-framework/ 
+
+## REST API Discovery & Documentation ##	
+
+Swagger UI is a dependency-free collection of HTML, Javascript, and CSS assets that dynamically generate beautiful documentation from a Swagger-compliant API
+http://swagger.wordnik.com/
 
 ## Build dan Run ##
 
 Running the project : 
 
 1. prepare MySQL database
-    * db name : e_gospel 
+    * db name  : e_gospel 
     * username : e_gospel_servant 
     * password : gen1:1
-
 2. Execute mvn clean install in top level folder
 3. Go to web folder, and run mvn jetty:run
 4. Browse your http://localhost:9699
@@ -62,9 +64,13 @@ Running the project :
 * Database Schema : Liquibase
 * Unit Test Runner : Maven Surefire Plugin
 * Integration Test Runner : Maven Failsafe Plugin
-* Functional Test : Rest-Assured
+* Functional Test : Rest-Assured, swagger-ui
 * Performance Monitoring : Javamelody
 * Application Server : Jetty 6 (you can deploy to any app server like Tomcat)
+
+
+## Dariawan or Dallanube? ##
+Dariawan is short-form of my full name Desson Ariawan. It's translated into "From The Cloud" in English or "Dalla Nube" in Italian. That's the background of my project name
 
 Cheers,
 Desson Ariawan

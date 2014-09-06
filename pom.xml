@@ -213,7 +213,7 @@
                     <properties>
                         <owner>Desson Ariawan</owner>
                         <year>${project.inceptionYear}</year>
-                        <email>teodesson@gmail.com</email>
+                        <email>teodesson@yahoo.com</email>
                     </properties>
                     <excludes>
                         <exclude>.hg/**</exclude>
