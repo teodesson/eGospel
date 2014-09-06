@@ -1,0 +1,154 @@
+<!--
+
+    eGospel Project
+    Copyright (C) 2014 Desson Ariawan <teodesson@gmail.com>
+
+    PLEASE NOTE: Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.
+    You may not use this software if you have not validly acquired a license for the software from Desson Ariawan or its licensed distributors.
+
+-->
+<div class="row">
+    <div class="col-md-10 well-large">
+        <h1>User's Detail</h1>
+        <form ng-upload class="form-horizontal" name="formEdit" action="user/photo">
+            <div class="form-group" ng-class="{error: formEdit.firstName.$invalid}">
+                <label class="control-label col-sm-2" for="firstName">First Name : &nbsp;</label>
+                <div class="col-sm-6">
+                    <input class="form-control" type="text" id="firstName" name="firstName" placeholder="First Name" ng-model="currentUser.firstName" required>
+                </div>
+                <span ng-show="formEdit.firstName.$error.required" class="help-block col-sm-2">{{usermsg.inputRequired}}</span>
+            </div>
+            <div class="form-group" ng-class="{error: formEdit.lastName.$invalid}">
+                <label class="control-label col-sm-2" for="lastName">Last : &nbsp;</label>
+                <div class="col-sm-6">
+                    <input class="form-control" type="text" id="lastName" name="lastName" placeholder="Last name" ng-model="currentUser.lastName" required>
+                </div>
+                <span ng-show="formEdit.lastName.$error.required" class="help-block col-sm-2">{{usermsg.inputRequired}}</span>
+            </div>
+            <div class="form-group" ng-class="{error: formEdit.username.$invalid}">
+                <label class="control-label col-sm-2" for="username">Username : &nbsp;</label>
+                <div class="col-sm-6">
+                    <input class="form-control" type="text" id="username" name="username" placeholder="User's name" ng-model="currentUser.username" required />
+                </div>
+                <span ng-show="formEdit.username.$error.required" class="help-block col-sm-2">{{usermsg.inputRequired}}</span>
+                <span ng-show="formEdit.username.$error.usernameAvailable" class="help-block col-sm-2">{{usermsg.userAlreadyExists}}</span>
+            </div>
+            <div class="form-group" ng-class="{error: formEdit.password.$invalid}">
+                <label class="control-label col-sm-2" for="password">Password : &nbsp;</label>
+                <div class="col-sm-6">
+                    <input class="form-control" type="password" id="password" name="password" placeholder="Password" ng-model="currentUser.password" required>
+                </div>
+                <span ng-show="formEdit.password.$error.required" class="help-block col-sm-2">{{usermsg.inputRequired}}</span>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="enabled">Enabled : &nbsp;</label>
+                <div class="col-sm-6">
+                    <input type="checkbox" id="active" name="enabled" ng-model="currentUser.enabled">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="role">Role : &nbsp;</label>
+                <div class="col-sm-6"> 
+                    <select ng-model="currentUser.role.id" data-placeholder="-- Select One --">
+                        <option></option>
+                        <option ng-repeat="role in roles" value="{{role.id}}">{{role.name}}</option>
+                    </select>
+                </div>
+            </div>            
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="photo">Photo : &nbsp;</label>
+                <div class="col-sm-6">                     
+                    <input class="form-control" type="file" id="photo_user" name="photo" />
+                </div>
+            </div>
+            <div class="control-group error">
+                <label class="control-label col-sm-2"></label>
+                <label class="control-label col-sm-2" style="text-align: left; width: 100%;">{{currentUser.uploadError}}</label>
+            </div>
+            <div class="form-group">     
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" upload-submit="uploadComplete(content, completed)" ng-disabled="isClean() || formEdit.$invalid">Save</button>
+                    <button type="button" class="btn btn-default" ng-click="add()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 well-large">
+        <h1>User List</h1>
+
+        <a class="btn btn-default" ng-click="add()">
+            <i class="glyphicon glyphicon-plus-sign"></i>Add User
+        </a>
+        <hr>        
+        <table class="table table-striped table-condensed table-bordered">
+            <thead>
+                <tr>
+                    <th>Photo</th>
+                    <th>Username</th>
+                    <th>Full Name</th>
+                    <th>Active</th>
+                    <th>Role</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="x in userpage.content">
+                    <td>
+                        <img src="{{x.photo}}" width="80" height="120">
+                    </td>
+                    <td>{{x.username}}</td>
+                    <td>{{x.fullName}}</td>
+                    <td>{{x.enabled}}</td>
+                    <td>{{x.role.name}}</td>
+                    <td>
+                        <a ng-click="edit(x)"><i class="glyphicon glyphicon-edit"></i></a>
+                        <a data-toggle="modal" data-target="#myModal" ng-click="prepareDelete(x)"><i class="glyphicon glyphicon-remove"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align: center;">
+            <ul class="pagination">
+                <li ng-class="{disabled: userpage.firstPage}">
+                    <a ng-click="reloadUserpage(1)">First</a>
+                </li>
+                <li ng-class="{disabled: userpage.firstPage}">
+                    <a ng-click="reloadUserpage(userpage.number - 1)">
+                        Prev
+                    </a>
+                </li>
+                <li ng-repeat="p in pages">
+                    <a ng-click="reloadUserpage(p)">{{p}}</a>
+                </li>
+                <li ng-class="{disabled: userpage.lastPage}">
+                    <a ng-click="reloadUserpage(userpage.number + 1)">
+                        Next
+                    </a>
+                </li>
+                <li ng-class="{disabled: userpage.lastPage}">
+                    <a ng-click="reloadUserpage(pages.length)">Last</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Remove record</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure?
+                </div>
+                <div class="modal-footer">          
+                    <button type="button" class="btn btn-primary" ng-click="remove(deleteUser)" data-dismiss="modal">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

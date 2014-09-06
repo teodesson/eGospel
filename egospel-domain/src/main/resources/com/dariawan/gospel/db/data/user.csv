@@ -1,0 +1,3 @@
+id,username,first_name,last_name,password,account_enabled,id_role,email,phone_number,website
+robot,robot,Cyborg,Man,$2a$10$Ww9uPxAoQfsCI/8gvZuGJefdv0jy1aO7v4oXRHIVeVEFpDlDxlTJC,true,superuser,robot@email.com,432951,robot.org
+desson,desson,Desson,Ariawan,$2a$10$xIGQIditB8yoeZK8PUG8RuRJd95WL.QLdHABG59vrxOmmpNGeI7om,true,superuser,teodesson@yahoo.com,8159265989,desson.com

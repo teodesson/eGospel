@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    eGospel Project
+    Copyright (C) 2014 Desson Ariawan <teodesson@gmail.com>
+
+    PLEASE NOTE: Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.
+    You may not use this software if you have not validly acquired a license for the software from Desson Ariawan or its licensed distributors.
+
+-->
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security.xsd">
+    
+    
+    <http pattern="/css/**" security="none"/>
+    <http pattern="/js/**" security="none"/>
+    
+    <http entry-point-ref="restAuthenticationEntryPoint">
+        <intercept-url pattern="/main.html**" access="ROLE_USER" />
+        <intercept-url pattern="/pages/404.html*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <intercept-url pattern="/pages/**" access="ROLE_USER" />
+        <intercept-url pattern="/config/**" access="ROLE_USER" />
+        <intercept-url pattern="/config*" access="ROLE_USER" />
+        <intercept-url pattern="/homepage/**" access="ROLE_USER" />
+        
+        <intercept-url pattern="/flowplayer/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <intercept-url pattern="/templates/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <intercept-url pattern="/index.html*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/register.html*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/login.html*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <form-login login-page="/login.html" 
+                    default-target-url="/main.html" 
+                    always-use-default-target="true"
+                    authentication-failure-url="/login.html?loginfail=true" />
+        <logout logout-success-url="/index.html"/>
+        
+        <session-management>
+            <concurrency-control max-sessions="1"/>
+        </session-management>
+    </http>
+    
+    <beans:bean id="restAuthenticationEntryPoint" class="com.dariawan.spring.security.RestAuthenticationEntryPoint" />
+    
+    
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider>
+            <user-service>
+                <user name="root" password="admin" authorities="ROLE_USER" />
+            </user-service>
+        </authentication-provider>
+        <authentication-provider user-service-ref='myUserDetailsService'>
+            <password-encoder ref="encoder" />
+        </authentication-provider>
+    </authentication-manager>
+    
+    <beans:bean id="myUserDetailsService"
+                class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+        <beans:property name="dataSource" ref="dataSource"/>
+        <beans:property name="enableAuthorities" value="false"/>
+        <beans:property name="enableGroups" value="true"/>
+        <beans:property name="usersByUsernameQuery">
+            <beans:value>
+                select username,password,account_enabled
+                from app_user
+                where username = ?
+            </beans:value>
+        </beans:property>
+        <beans:property name="groupAuthoritiesByUsernameQuery">
+            <beans:value>
+                select r.id, r.name as group_name, p.permission_value as authority
+                from app_user u
+                inner join app_role r on u.id_role = r.id
+                inner join app_role_permission rp on rp.id_role = r.id
+                inner join app_permission p on rp.id_permission = p.id
+                where username = ?
+            </beans:value>
+        </beans:property>
+    </beans:bean>
+    
+    <beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+            <beans:constructor-arg name="strength" value="10" />
+    </beans:bean>
+</beans:beans>

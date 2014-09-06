@@ -1,0 +1,259 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="desson">
+        <createTable tableName="app_config">
+            <column name="id" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints unique="true" nullable="false" />
+            </column>
+            <column name="label" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="value" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <createTable tableName="app_menu">
+            <column name="id" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="label" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="menu_action" type="varchar(255)"/>
+            <column name="menu_level" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="menu_order" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="menu_options" type="varchar(255)"/>
+            <column name="id_parent" type="varchar(255)" />
+        </createTable>
+        
+        <createTable tableName="app_permission">
+            <column name="id" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="permission_label" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="permission_value" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        
+        <createTable tableName="app_role">
+            <column name="id" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="varchar(255)" />
+        </createTable>
+        <createTable tableName="app_role_permission">
+            <column name="id_role" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="id_permission" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+        </createTable>
+        <createTable tableName="app_role_menu">
+            <column name="id_role" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="id_menu" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+        </createTable>
+        <createTable tableName="app_user">
+            <column name="id" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="username" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="password_hint" type="varchar(255)" />
+            <column name="first_name" type="varchar(50)" />
+            <column name="last_name" type="varchar(50)" />
+            <column name="account_enabled" type="boolean" />
+            <!--
+            <column name="account_expired" type="boolean" />
+            <column name="account_locked" type="boolean" />
+            <column name="credentials_expired" type="boolean" />
+            -->
+            <column name="id_role" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="email" type="varchar(255)" />
+            <column name="phone_number" type="varchar(255)" />
+            <column name="website" type="varchar(255)" />
+            <column name="photo" type="varchar(255)" />
+            <!--<column name="version" type="int" />-->
+        </createTable>
+        
+        <createTable tableName="dar_post">
+            <column name="id" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="id_author" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="post_on" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="content" type="longtext">
+                <constraints nullable="false" />
+            </column>            
+            <column name="post_status" type="varchar(20)">
+                <constraints nullable="false" />
+            </column>
+            <column name="comment_status" type="varchar(20)">
+                <constraints nullable="false" />
+            </column>
+            <column name="post_modified" type="datetime"/>
+            <column name="post_type" type="varchar(20)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <modifySql dbms="mysql">
+            <append value=" engine innodb" />
+        </modifySql>
+    </changeSet>
+    <changeSet id="2" author="desson">
+        <addForeignKeyConstraint
+            constraintName="fk_menu_parent"
+            baseColumnNames="id_parent"
+            baseTableName="app_menu"
+            referencedTableName="app_menu"
+            referencedColumnNames="id"
+        />
+        <addUniqueConstraint
+            constraintName="unique_permission_value"
+            columnNames="permission_value"
+            tableName="app_permission"
+        />
+        <addUniqueConstraint
+            constraintName="unique_role_name"
+            columnNames="name"
+            tableName="app_role"
+        />
+        <addForeignKeyConstraint
+            constraintName="fk_role_permission_role"
+            baseColumnNames="id_role"
+            baseTableName="app_role_permission"
+            referencedTableName="app_role"
+            referencedColumnNames="id"
+        />
+        <addForeignKeyConstraint
+            constraintName="fk_role_permission_permission"
+            baseColumnNames="id_permission"
+            baseTableName="app_role_permission"
+            referencedTableName="app_permission"
+            referencedColumnNames="id"
+        />
+        <addForeignKeyConstraint
+            constraintName="fk_role_menu_role"
+            baseColumnNames="id_role"
+            baseTableName="app_role_menu"
+            referencedTableName="app_role"
+            referencedColumnNames="id"
+        />
+        <addForeignKeyConstraint
+            constraintName="fk_role_menu_menu"
+            baseColumnNames="id_menu"
+            baseTableName="app_role_menu"
+            referencedTableName="app_menu"
+            referencedColumnNames="id"
+        />
+        <addUniqueConstraint
+            constraintName="unique_user_username"
+            columnNames="username"
+            tableName="app_user"
+        />
+        <addForeignKeyConstraint
+            constraintName="fk_user_role"
+            baseColumnNames="id_role"
+            baseTableName="app_user"
+            referencedTableName="app_role"
+            referencedColumnNames="id"
+        />
+        <addForeignKeyConstraint
+            constraintName="fk_post_author"
+            baseColumnNames="id_author"
+            baseTableName="dar_post"
+            referencedTableName="app_user"
+            referencedColumnNames="id"
+        />
+    </changeSet>
+    <changeSet id="3" author="desson">
+        <loadData tableName="app_menu" file="com/dariawan/gospel/db/data/menu.csv">
+            <column header="id" type="STRING"/>
+            <column header="label" type="STRING"/>
+            <column header="menu_action" type="STRING"/>
+            <column header="menu_level" type="NUMERIC"/>
+            <column header="menu_order" type="NUMERIC"/>
+            <column header="menu_options" type="STRING"/>
+            <column header="id_parent" type="STRING"/>
+        </loadData>
+        <loadData tableName="app_permission" file="com/dariawan/gospel/db/data/permission.csv">
+            <column header="id" type="STRING"/>
+            <column header="permission_label" type="STRING"/>
+            <column header="permission_value" type="STRING"/>
+        </loadData>
+        <loadData tableName="app_role" file="com/dariawan/gospel/db/data/role.csv">
+            <column header="id" type="STRING"/>
+            <column header="name" type="STRING"/>
+            <column header="description" type="STRING"/>
+        </loadData>
+        <loadData tableName="app_role_menu" file="com/dariawan/gospel/db/data/role_menu.csv">
+            <column header="id_role" type="STRING"/>
+            <column header="id_menu" type="STRING"/>
+        </loadData>
+        <loadData tableName="app_role_permission" file="com/dariawan/gospel/db/data/role_permission.csv">
+            <column header="id_role" type="STRING"/>
+            <column header="id_permission" type="STRING"/>
+        </loadData>
+        <loadData tableName="app_user" file="com/dariawan/gospel/db/data/user.csv">
+            <column header="id" type="STRING"/>
+            <column header="username" type="STRING"/>
+            <column header="first_name" type="STRING"/>
+            <column header="last_name" type="STRING"/>
+            <column header="password" type="STRING"/>
+            <column header="account_enabled" type="BOOLEAN" />
+            <!--
+            <column header="account_expired" type="BOOLEAN" />
+            <column header="account_locked" type="BOOLEAN" />
+            <column header="credentials_expired" type="BOOLEAN" />
+            -->
+            <column header="id_role" type="STRING"/>
+            <column header="email" type="STRING"/>
+            <column header="phone_number" type="STRING"/>
+            <column header="website" type="STRING"/>
+            <!--<column header="version" type="INTEGER"/>-->
+        </loadData>
+        <loadData tableName="dar_post" file="com/dariawan/gospel/db/data/post.csv">
+            <column header="id" type="STRING"/>
+            <column header="id_author" type="STRING"/>
+            <column header="post_on" type="DATE"/>
+            <column header="title" type="STRING"/>            
+            <column header="content" type="STRING"/>
+            <column header="post_status" type="STRING"/>
+            <column header="comment_status" type="STRING"/>
+            <column header="post_modified" type="DATE"/>
+            <column header="post_type" type="STRING"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,35 @@
+<!--
+
+    eGospel Project
+    Copyright (C) 2014 Desson Ariawan <teodesson@gmail.com>
+
+    PLEASE NOTE: Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.
+    You may not use this software if you have not validly acquired a license for the software from Desson Ariawan or its licensed distributors.
+
+-->
+<div class="row">
+    <div class="col-md-10 well-large">
+        <h1>New Post</h1>
+        <form class="form-horizontal" name="formEdit">
+            <div class="form-group" ng-class="{error: formEdit.title.$invalid}">
+                <label class="control-label col-sm-2" for="title">Title : &nbsp;</label>
+                <div class="col-sm-8">
+                    <input class="form-control" type="text" id="title" name="title" placeholder="Title" ng-model="currentPost.title" required>
+                </div>
+                <span ng-show="formEdit.title.$error.required" class="help-block col-sm-2">{{userpage.inputRequired}}</span>
+            </div>
+            <div class="form-group" ng-class="{error: formEdit.content.$invalid}">
+                <label class="control-label col-sm-2" for="content">Content : &nbsp;</label>
+                <div class="col-sm-8">
+                    <textarea ck-editor="" class="form-control" cols="120" id="content" name="content" ng-model="currentPost.content"  value="{{currentPost.content}}">{{currentPost.content}}</textarea>
+                </div>
+            </div>
+            <div class="form-group">     
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" ng-click="save()" ng-disabled="formEdit.$invalid">Save</button>
+                    <button type="button" class="btn btn-default" ng-click="add()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

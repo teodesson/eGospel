@@ -1,0 +1,4 @@
+id,name,description
+superuser,Super User,Full Access
+staff,Staff,Data Entry
+subscriber,Subscriber,Read Content

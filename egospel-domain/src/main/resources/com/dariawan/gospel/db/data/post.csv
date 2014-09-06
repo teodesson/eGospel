@@ -1,0 +1,3 @@
+id,id_author,post_on,title,content,post_status,comment_status,post_modified,post_type
+test,desson,2014-07-27,Test Title,This is test content,publish,open,2014-07-27,post
+page,desson,2014-07-27,Post Title,This is page content,publish,open,2014-07-27,page

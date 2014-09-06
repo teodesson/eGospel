@@ -1,0 +1,10 @@
+id,permission_label,permission_value
+user,User,ROLE_USER
+user-view,User-View,ROLE_USER_VIEW
+user-edit,User-Edit,ROLE_USER_EDIT
+role-view,Role-View,ROLE_ROLE_VIEW
+role-edit,Role-Edit,ROLE_ROLE_EDIT
+menu-view,Menu-View,ROLE_MENU_VIEW
+menu-edit,Menu-Edit,ROLE_MENU_EDIT
+permission-view,Permission-View,ROLE_PERMISSION_VIEW
+permission-edit,Permission-Edit,ROLE_PERMISSION_EDIT

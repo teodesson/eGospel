@@ -1,0 +1,96 @@
+<!--
+
+    eGospel Project
+    Copyright (C) 2014 Desson Ariawan <teodesson@gmail.com>
+
+    PLEASE NOTE: Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.
+    You may not use this software if you have not validly acquired a license for the software from Desson Ariawan or its licensed distributors.
+
+-->
+<div class="col-md-5 well-large">
+    <h1>Permission List</h1>
+
+    <a class="btn btn-default" ng-click="add()">
+        <i class="glyphicon glyphicon-plus-sign"></i>Add Permission
+    </a>
+    <hr>
+    <table class="table table-striped table-condensed table-bordered">
+        <thead>
+            <tr>
+                <th>Label</th>
+                <th>Value</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="x in permissionpage.content">
+                <td>{{x.label}}</td>
+                <td>{{x.value}}</td>
+                <td>
+                    <a ng-click="edit(x)"><i class="glyphicon glyphicon-edit"></i></a>
+                    <a ng-click="remove(x)"><i class="glyphicon glyphicon-remove"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="text-align: center;">
+        <ul class="pagination">
+            <li ng-class="{disabled: permissionpage.firstPage}">
+                <a ng-click="reloadPermissionpage(1)">First</a>
+            </li>
+            <li ng-class="{disabled: permissionpage.firstPage}">
+                <a ng-click="reloadPermissionpage(permissionpage.number - 1)">
+                    Prev
+                </a>
+            </li>
+            <li ng-repeat="p in pages">
+                <a ng-click="reloadPermissionpage(p)">{{p}}</a>
+            </li>
+            <li ng-class="{disabled: permissionpage.lastPage}">
+                <a ng-click="reloadPermissionpage(permissionpage.number + 1)">
+                    Next
+                </a>
+            </li>
+            <li ng-class="{disabled: permissionpage.lastPage}">
+                <a ng-click="reloadPermissionpage(pages.length)">Last</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="col-md-5 well-large">
+    <h1>Form Permission</h1>
+    <form class="form-horizontal" name="formEdit">
+        <div class="form-group" ng-class="{error: formEdit.label.$invalid}">
+            <label class="control-label col-sm-2" for="label">Label : &nbsp;</label>
+            <div class="col-sm-6">                     
+                <input class="form-control" type="text" id="label" 
+                       name="label" 
+                       placeholder="Permission's Label" 
+                       ng-model="currentPermission.label"
+                       required>
+            </div>
+            <span ng-show="formEdit.label.$error.required" class="help-block col-sm-2">Required</span>
+        </div>
+        <div class="form-group" ng-class="{error: formEdit.value.$invalid}">
+            <label class="control-label col-sm-2" for="value">Value : &nbsp;</label>
+            <div class="col-sm-6">                     
+                <input class="form-control" type="text" 
+                       id="value" 
+                       name="value" 
+                       placeholder="Permission's value" 
+                       ng-model="currentPermission.value"
+                       required
+                       ui-validate="{permissionValueAvailable: isPermissionValueAvailable}">
+            </div>
+            <span ng-show="formEdit.value.$error.required" class="help-block col-sm-2">Required</span>
+            <span ng-show="formEdit.value.$error.permissionValueAvailable" class="help-block col-sm-2">Permission already exists</span>
+        </div>
+        <div class="form-group">     
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary" ng-click="save()" ng-disabled="isClean() || formEdit.$invalid">Save</button>
+                <button type="button" class="btn btn-default" ng-click="add()">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>

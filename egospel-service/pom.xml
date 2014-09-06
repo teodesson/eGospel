@@ -1,0 +1,131 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>egospel</groupId>
+        <artifactId>egospel</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>egospel-service</artifactId>
+    <packaging>jar</packaging>
+    <name>eGospel Business Service</name>
+
+    <properties>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+        
+    <dependencies>
+        <dependency>
+            <groupId>egospel</groupId>
+            <artifactId>egospel-domain</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>egospel</groupId>
+            <artifactId>egospel-config</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+               
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.1</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${org.springframework.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        
+        <!--
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${org.springframework.security.version}</version>
+        </dependency>
+        -->
+        
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${org.springframework.security.version}</version>
+         </dependency>
+                
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${org.springframework.version}</version>
+            <scope>test</scope>
+        </dependency>
+       
+        <dependency>
+            <groupId>org.dbunit</groupId>
+            <artifactId>dbunit</artifactId>
+            <version>${dbunit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>${javamail.version}</version>
+        </dependency>
+        
+        <!--
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>${velocity.version}</version>
+        </dependency>
+        -->
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>${commons.collections.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven-failsafe-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+
