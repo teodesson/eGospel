@@ -31,7 +31,7 @@
         <intercept-url pattern="/flowplayer/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
         <intercept-url pattern="/templates/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
         <intercept-url pattern="/index.html*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/register.html*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/signup.html*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/login.html*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <form-login login-page="/login.html" 
                     default-target-url="/main.html" 

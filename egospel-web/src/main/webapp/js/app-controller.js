@@ -631,7 +631,7 @@ angular.module('dallanube.controller', ['dallanube.service', 'ngUpload'])
 //            return true;
 //        }
             }])
-        .controller('RegistrationController', ['$scope', 'UserService', function($scope, UserService) {
+        .controller('SignupController', ['$scope', 'UserService', function($scope, UserService) {
                 $scope.currentUser = null;
                 $scope.users = UserService.query();
                 $scope.add = function() {

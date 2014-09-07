@@ -3,7 +3,7 @@ angular.module('dallanube', ['ngRoute', 'ui', 'dallanube.controller'])
         $routeProvider
             .when('/', {templateUrl: 'pages/home.html'})
             .when('/index', {templateUrl: 'index.html', controller: 'IndexController'})
-          //.when('/register', {templateUrl: 'register.html', controller: 'RegistrationController'})
+            //.when('/signup', {templateUrl: 'signup.html', controller: 'SIgnupController'})
             .when('/401', {templateUrl: 'pages/404.html', controller: 'LoginRedirectorController'})
             .when('/system/config', {templateUrl: 'pages/system/config.html', controller: 'ApplicationConfigController'})
             .when('/system/sessions', {templateUrl: 'pages/system/sessions.html', controller: 'ApplicationSessionsController'})

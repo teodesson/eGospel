@@ -1,0 +1,140 @@
+<!--
+
+    eGospel Project
+    Copyright (C) 2014 Desson Ariawan <teodesson@yahoo.com>
+
+    PLEASE NOTE: Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.
+    You may not use this software if you have not validly acquired a license for the software from Desson Ariawan or its licensed distributors.
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="eGospel Project">
+        <meta name="author" content="Desson Ariawan">
+        <title>Signup to eGospel</title>
+
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/default.css" rel="stylesheet">
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->        
+    </head>
+
+    <body ng-app="dallanube" ng-controller="SignupController">          
+        <!-- Fixed navbar -->
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="info.html">Info</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <!--<li><a href="#contact" data-toggle="modal">Contact</a></li>-->
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="signup.html">Signup</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-sm-4">
+                <h2>New User Registration</h2>
+                <p>Please enter your personal information.</p>
+            </div>
+            <div class="col-sm-8">
+                <form class="well" name="formEdit">
+                    <div class="row">
+                        <div class="col-sm-12 form-group" ng-class="{error: formEdit.username.$invalid}">
+                            <label class="control-label" for="username">Email</label>
+                            <input class="form-control" type="text" id="username" name="username" placeholder="Email" ng-model="currentUser.username" required>
+                            <span ng-show="formEdit.username.$error.required" class="help-block col-sm-2">{{userpage.inputRequired}}</span>
+                        </div>  
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 form-group" ng-class="{error: formEdit.password.$invalid}">
+                            <label class="control-label" for="password">Password</label>
+                            <input class="form-control" type="password" id="password" name="password" placeholder="Password" ng-model="currentUser.password" required>
+                            <span ng-show="formEdit.password.$error.required" class="help-block col-sm-2">{{userpage.inputRequired}}</span>
+                        </div>
+                        <div class="col-sm-6 form-group" ng-class="{error: formEdit.confirmPassword.$invalid}">
+                            <label class="control-label" for="confirmPassword">Confirm Password</label>
+                            <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" ng-model="currentUser.confirmPassword" required>
+                            <span ng-show="formEdit.confirmPassword.$error.required" class="help-block col-sm-2">{{userpage.inputRequired}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 form-group" ng-class="{error: formEdit.passwordHint.$invalid}">
+                            <label class="control-label" for="passwordHint">Password Hint : &nbsp;</label>
+                            <input class="form-control" type="text" id="passwordHint" name="passwordHint" placeholder="Password Hint" ng-model="currentUser.passwordHint" required>
+                            <span ng-show="formEdit.passwordHint.$error.required" class="help-block col-sm-2">{{userpage.inputRequired}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 form-group" ng-class="{error: formEdit.firstName.$invalid}">
+                            <label class="control-label" for="firstName">First Name : &nbsp;</label>
+                            <input class="form-control" type="text" id="firstName" name="firstName" placeholder="First name" ng-model="currentUser.firstName" required>
+                            <span ng-show="formEdit.firstName.$error.required" class="help-block col-sm-2">{{userpage.inputRequired}}</span>
+                        </div>
+                        <div class="col-sm-6 form-group" ng-class="{error: formEdit.lastName.$invalid}">
+                            <label class="control-label" for="lastName">First Name : &nbsp;</label>
+                            <input class="form-control" type="text" id="lastName" name="lastName" placeholder="Last name" ng-model="currentUser.lastName" required>
+                            <span ng-show="formEdit.lastName.$error.required" class="help-block col-sm-2">{{userpage.inputRequired}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 form-group">     
+                            <button type="submit" class="btn btn-primary" ng-click="save()" ng-disabled="isClean() || formEdit.$invalid">Save</button>
+                            <button type="button" class="btn btn-default" ng-click="add()">Cancel</button>                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Fixed footer -->
+        <div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+            <div class="container">
+                <div class="navbar-text pull-left">
+                    <p>© Desson Ariawan</p>
+                </div>
+                <div class="navbar-text pull-right">
+                    <a href="#" class="social home-social"><img src=img/social/envelope.68px.png alt=Email></a>
+                    <a href="#" class="social home-social"><img src=img/social/facebook.68px.png alt=Facebook></a>
+                    <!--<a href="#" class="social home-social"><img src=img/social/gplus.68px.png alt=Google+></a>-->
+                    <a href="#" class="social home-social"><img src=img/social/twitter.68px.png alt=Twitter></a>
+                    <a href="#" class="social home-social"><img src=img/social/github.68px.png alt=Github></a>
+                    <!--<a href="#" class="social home-social"><img src=img/social/feed.68px.png alt=Feed></a>-->
+                </div>
+            </div>
+        </div>
+        <!-- imported script -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-ui.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/angular-resource.min.js"></script>
+        <script src="js/angular-route.min.js"></script>
+        <script src="js/angular-ui.min.js"></script>
+        <script src="js/underscore-min.js"></script>
+        <script src="js/ng-upload.min.js"></script>
+
+        <!-- our script -->
+        <script src="js/app-main.js"></script>
+        <script src="js/app-service.js"></script>
+        <script src="js/app-controller.js"></script>
+    </body>
+</html>
