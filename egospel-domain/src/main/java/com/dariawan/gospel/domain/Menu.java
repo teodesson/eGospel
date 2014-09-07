@@ -1,9 +1,10 @@
 /**
- * eGospel Project
- * Copyright (C) 2014 Desson Ariawan <teodesson@yahoo.com>
+ * eGospel Project Copyright (C) 2014 Desson Ariawan <teodesson@yahoo.com>
  *
- * PLEASE NOTE: Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.
- * You may not use this software if you have not validly acquired a license for the software from Desson Ariawan or its licensed distributors.
+ * PLEASE NOTE: Your use of this software is subject to the terms and conditions
+ * of the license agreement by which you acquired this software. You may not use
+ * this software if you have not validly acquired a license for the software
+ * from Desson Ariawan or its licensed distributors.
  */
 package com.dariawan.gospel.domain;
 
@@ -26,6 +27,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name = "app_menu")
 public class Menu {
+
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")
@@ -33,27 +35,27 @@ public class Menu {
 
     @Column(name = "menu_action")
     private String action;
-    
+
     @NotNull
     @NotEmpty
     @Column(name = "label", nullable = false)
     private String label;
-    
+
     @NotNull
     @Min(0)
     @Column(name = "menu_level", nullable = false)
     private Integer level = 0;
-    
+
     @NotNull
     @Min(0)
     @Column(name = "menu_order", nullable = false)
     private Integer order = 0;
-    
+
     @Column(name = "menu_options")
     private String options;
 
     @ManyToOne
-    @JoinColumn(name="id_parent")
+    @JoinColumn(name = "id_parent")
     private Menu parent;
 
     public String getId() {
@@ -111,5 +113,4 @@ public class Menu {
     public void setOptions(String options) {
         this.options = options;
     }
-    
 }

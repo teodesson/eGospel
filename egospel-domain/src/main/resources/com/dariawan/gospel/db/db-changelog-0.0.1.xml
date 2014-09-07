@@ -98,7 +98,13 @@
             <column name="phone_number" type="varchar(255)" />
             <column name="website" type="varchar(255)" />
             <column name="photo" type="varchar(255)" />
-            <!--<column name="version" type="int" />-->
+            <column name="address1" type="varchar(100)" />
+            <column name="address2" type="varchar(100)" />
+            <column name="address3" type="varchar(100)" />
+            <column name="city" type="varchar(50)" />
+            <column name="province" type="varchar(100)" />
+            <column name="country" type="varchar(100)" />
+            <column name="postal_code" type="varchar(15)" />
         </createTable>
         
         <createTable tableName="dar_post">

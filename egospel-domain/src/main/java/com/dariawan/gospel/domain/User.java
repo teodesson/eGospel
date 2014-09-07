@@ -73,12 +73,11 @@ public class User implements Serializable {
     @Column(name = "website")
     private String website;    
 
-    //@Version
-    //private Integer version;
-
     @Column(name = "account_enabled")
     private boolean enabled;
 
+    private Address address = new Address();
+    
     /*
     @Column(name = "account_expired", nullable = false)
     private boolean accountExpired;
@@ -206,22 +205,26 @@ public class User implements Serializable {
         this.website = website;
     }
 
-    /*
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
-    */
-
     public boolean isEnabled() {
         return enabled;
     }
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    /**
+     * @return the address
+     */
+    public Address getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     /*
