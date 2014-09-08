@@ -18,6 +18,7 @@
         <title>Signup to eGospel</title>
 
         <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/docs.min.css" rel="stylesheet">
         <link href="css/default.css" rel="stylesheet">
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
@@ -78,21 +79,68 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12 form-group" ng-class="{error: formEdit.passwordHint.$invalid}">
-                            <label class="control-label" for="passwordHint">Password Hint : &nbsp;</label>
+                            <label class="control-label" for="passwordHint">Password Hint</label>
                             <input class="form-control" type="text" id="passwordHint" name="passwordHint" placeholder="Password Hint" ng-model="currentUser.passwordHint" required>
                             <span ng-show="formEdit.passwordHint.$error.required" class="help-block col-sm-2">{{userpage.inputRequired}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6 form-group" ng-class="{error: formEdit.firstName.$invalid}">
-                            <label class="control-label" for="firstName">First Name : &nbsp;</label>
+                            <label class="control-label" for="firstName">First Name</label>
                             <input class="form-control" type="text" id="firstName" name="firstName" placeholder="First name" ng-model="currentUser.firstName" required>
                             <span ng-show="formEdit.firstName.$error.required" class="help-block col-sm-2">{{userpage.inputRequired}}</span>
                         </div>
                         <div class="col-sm-6 form-group" ng-class="{error: formEdit.lastName.$invalid}">
-                            <label class="control-label" for="lastName">First Name : &nbsp;</label>
+                            <label class="control-label" for="lastName">Last Name</label>
                             <input class="form-control" type="text" id="lastName" name="lastName" placeholder="Last name" ng-model="currentUser.lastName" required>
                             <span ng-show="formEdit.lastName.$error.required" class="help-block col-sm-2">{{userpage.inputRequired}}</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="accordion-heading">
+                            <a data-toggle="collapse" href="#collapse-address">
+                                <h4>Address</h4>
+                            </a>
+                        </div>
+                        <div id="collapse-address" class="collapse">
+                            <div class="row">
+                                <div class="col-sm-12 form-group" ng-class="{error: formEdit.address.address1.$invalid}">
+                                    <label class="control-label" for="address1">Address 1</label>
+                                    <input class="form-control" type="text" id="address1" name="address1" placeholder="Address Line 1" ng-model="currentUser.address.address1">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 form-group" ng-class="{error: formEdit.address.address2.$invalid}">
+                                    <label class="control-label" for="address2">Address 2</label>
+                                    <input class="form-control" type="text" id="address2" name="address2" placeholder="Address Line 2" ng-model="currentUser.address.address2">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 form-group" ng-class="{error: formEdit.address.address3.$invalid}">
+                                    <label class="control-label" for="address3">Address 3</label>
+                                    <input class="form-control" type="text" id="address3" name="address3" placeholder="Address Line 3" ng-model="currentUser.address.address3">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 form-group" ng-class="{error: formEdit.address.city.$invalid}">
+                                    <label class="control-label" for="city">City</label>
+                                    <input class="form-control" type="text" id="city" name="city" placeholder="City" ng-model="currentUser.address.city">
+                                </div>
+                                <div class="col-sm-6 form-group" ng-class="{error: formEdit.address.province.$invalid}">
+                                    <label class="control-label" for="province">Province</label>
+                                    <input class="form-control" type="text" id="province" name="province" placeholder="Province" ng-model="currentUser.address.province">
+                                </div>                                
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 form-group" ng-class="{error: formEdit.address.country.$invalid}">
+                                    <label class="control-label" for="country">Country</label>
+                                    <input class="form-control" type="text" id="country" name="country" placeholder="Country" ng-model="currentUser.address.country">
+                                </div>
+                                <div class="col-sm-6 form-group" ng-class="{error: formEdit.address.postalCode.$invalid}">
+                                    <label class="control-label" for="postalCode">Postal Code</label>
+                                    <input class="form-control" type="text" id="postalCode" name="postalCode" placeholder="Postal Code" ng-model="currentUser.address.postalCode">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
