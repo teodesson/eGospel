@@ -21,6 +21,10 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ *
+ * @author Desson Ariawan <teodesson@yahoo.com>
+ */
 @Entity
 @Table(name = "app_user")
 public class User implements Serializable {

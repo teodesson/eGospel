@@ -16,7 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  *
- * @author Desson
+ * @author Desson Ariawan <teodesson@yahoo.com>
  */
 public class BaseController {
     

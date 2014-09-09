@@ -13,7 +13,9 @@ import java.io.Serializable;
 
 /**
  * This class is used to represent an address1 with address1,
- city, province and postal-code information.
+ * city, province and postal-code information.
+ *
+ * @author Desson Ariawan <teodesson@yahoo.com>
  */
 @Embeddable
 public class Address implements Serializable {

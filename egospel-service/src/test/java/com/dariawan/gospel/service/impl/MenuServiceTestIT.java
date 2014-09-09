@@ -18,10 +18,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+/**
+ *
+ * @author Desson Ariawan <teodesson@yahoo.com>
+ */
 public class MenuServiceTestIT extends BaseTestIT {
-    
-    @Autowired
-    private GospelService gospelService;
     
     @Test
     public void testFindAll() {

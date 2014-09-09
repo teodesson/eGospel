@@ -18,14 +18,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+/**
+ *
+ * @author Desson Ariawan <teodesson@yahoo.com>
+ */
 public class UserServiceTestIT extends BaseTestIT {
-
-    @Autowired
-    private GospelService service;
 
     @Test
     public void testFindById() {
-        User ac = service.findUserById("robot");
+        User ac = gospelService.findUserById("robot");
         assertNotNull(ac);
         assertEquals("robot", ac.getUsername());
         assertEquals("Cyborg Man", ac.getFullName());
@@ -33,19 +34,19 @@ public class UserServiceTestIT extends BaseTestIT {
         assertEquals(Boolean.TRUE, ac.isEnabled());
         assertEquals("Super User", ac.getRole().getName());
         
-        assertNull(service.findUserById(null));
-        assertNull(service.findUserById(""));
+        assertNull(gospelService.findUserById(null));
+        assertNull(gospelService.findUserById(""));
     }
 
     @Test
     public void testFindAll() {
-        Page<User> result = service.findAllUsers(new PageRequest(0, service.countAllUsers().intValue()));
+        Page<User> result = gospelService.findAllUsers(new PageRequest(0, gospelService.countAllUsers().intValue()));
         assertTrue(result.getTotalElements() > 0);
     }
 
     @Test
     public void testFindByUsername() {
-        assertNotNull(service.findUserByUsername("robot"));
-        assertNull(service.findUserByUsername("cyborg"));
+        assertNotNull(gospelService.findUserByUsername("robot"));
+        assertNull(gospelService.findUserByUsername("cyborg"));
     }
 }

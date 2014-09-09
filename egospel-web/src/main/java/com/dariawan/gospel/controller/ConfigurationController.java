@@ -36,20 +36,23 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriTemplate;
 
-import com.dariawan.gospel.domain.ApplicationConfig;
+import com.dariawan.gospel.domain.Configuration;
 import com.dariawan.gospel.service.GospelService;
 import com.google.common.io.Files;
 import javax.validation.Valid;
 import org.springframework.data.domain.Pageable;
 
+/**
+ *
+ * @author Desson Ariawan <teodesson@yahoo.com>
+ */
 @Controller
-public class ApplicationConfigController {
+public class ConfigurationController extends BaseController { 
 
     private static final String ESC_CHAR_DOT = "\\.";
     private static final long FILE_SIZE_RESUME = 46166;
     private static final long FILE_SIZE_PHOTO = 30886;
-    @Autowired
-    private GospelService gospelService;
+    
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("/config/{id}/files")
@@ -59,7 +62,7 @@ public class ApplicationConfigController {
             @RequestParam String description,
             @RequestParam MultipartFile resume,
             @RequestParam MultipartFile photo) throws Exception {
-        ApplicationConfig config = gospelService.findApplicationConfigById(id);
+        Configuration config = gospelService.findConfigurationById(id);
         if (config == null) {
             throw new IllegalStateException();
         }
@@ -106,8 +109,8 @@ public class ApplicationConfigController {
 
     @RequestMapping("/config/{id}")
     @ResponseBody
-    public ApplicationConfig findApplicationConfigById(@PathVariable String id) {
-        ApplicationConfig config = gospelService.findApplicationConfigById(id);
+    public Configuration findConfigurationById(@PathVariable String id) {
+        Configuration config = gospelService.findConfigurationById(id);
         if (config == null) {
             throw new IllegalStateException();
         }
@@ -116,7 +119,7 @@ public class ApplicationConfigController {
 
     @RequestMapping(value = "/config", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody @Valid ApplicationConfig config, HttpServletRequest request, HttpServletResponse response) {
+    public void create(@RequestBody @Valid Configuration config, HttpServletRequest request, HttpServletResponse response) {
         gospelService.save(config);
         String requestUrl = request.getRequestURL().toString();
         URI uri = new UriTemplate("{requestUrl}/{id}").expand(requestUrl, config.getId());
@@ -125,8 +128,8 @@ public class ApplicationConfigController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/config/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void update(@PathVariable String id, @RequestBody @Valid ApplicationConfig config) {
-        ApplicationConfig a = gospelService.findApplicationConfigById(id);
+    public void update(@PathVariable String id, @RequestBody @Valid Configuration config) {
+        Configuration a = gospelService.findConfigurationById(id);
         if (a == null) {
             logger.warn("Config with id [{}] not found", id);
             throw new IllegalStateException();
@@ -138,7 +141,7 @@ public class ApplicationConfigController {
     @RequestMapping(method = RequestMethod.DELETE, value = "/config/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable String id) {
-        ApplicationConfig a = gospelService.findApplicationConfigById(id);
+        Configuration a = gospelService.findConfigurationById(id);
         if (a == null) {
             logger.warn("Config with id [{}] not found", id);
             throw new IllegalStateException();
@@ -148,15 +151,15 @@ public class ApplicationConfigController {
 
     @RequestMapping(value = "/config", method = RequestMethod.GET)
     @ResponseBody
-    public List<ApplicationConfig> findAll(
+    public List<Configuration> findAll(
             @RequestParam(required = false) String search,
             Pageable pageable,
             HttpServletResponse response) {
         
         if (StringUtils.hasText(search)) {
-            return gospelService.findApplicationConfigs(search, pageable).getContent();
+            return gospelService.findConfiguration(search, pageable).getContent();
         } else {
-            return gospelService.findAllApplicationConfigs(pageable).getContent();
+            return gospelService.findAllConfiguration(pageable).getContent();
         }
 
     }

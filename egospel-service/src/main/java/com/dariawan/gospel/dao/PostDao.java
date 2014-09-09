@@ -7,7 +7,6 @@
  */
 package com.dariawan.gospel.dao;
 
-import com.dariawan.gospel.domain.ApplicationConfig;
 import com.dariawan.gospel.domain.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

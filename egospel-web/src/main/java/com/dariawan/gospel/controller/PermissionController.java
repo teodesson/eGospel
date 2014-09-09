@@ -30,11 +30,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.util.UriTemplate;
 
+/**
+ *
+ * @author Desson Ariawan <teodesson@yahoo.com>
+ */
 @Controller
-public class PermissionController {
+public class PermissionController extends BaseController { 
 
-    @Autowired
-    private GospelService gospelService;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("/permission/{id}")

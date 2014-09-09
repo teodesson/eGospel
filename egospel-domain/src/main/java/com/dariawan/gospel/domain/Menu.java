@@ -8,6 +8,7 @@
  */
 package com.dariawan.gospel.domain;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,11 +23,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
- * @author Desson
+ * @author Desson Ariawan <teodesson@yahoo.com>
  */
 @Entity
 @Table(name = "app_menu")
-public class Menu {
+public class Menu implements Serializable {
 
     @Id
     @GeneratedValue(generator = "system-uuid")

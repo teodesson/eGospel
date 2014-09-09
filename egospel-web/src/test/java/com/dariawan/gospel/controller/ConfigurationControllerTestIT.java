@@ -7,13 +7,12 @@
  */
 package com.dariawan.gospel.controller;
 
-import com.dariawan.gospel.domain.ApplicationConfig;
+import com.dariawan.gospel.domain.Configuration;
 import static com.jayway.restassured.RestAssured.given;
 import static com.jayway.restassured.RestAssured.with;
 import com.jayway.restassured.authentication.FormAuthConfig;
 import java.io.File;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.util.List;
 import java.util.Map;
 import static org.hamcrest.Matchers.equalTo;
@@ -22,7 +21,6 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import org.junit.Before;
 
 import org.junit.Test;
 import org.springframework.core.io.FileSystemResource;
@@ -35,26 +33,20 @@ import org.springframework.web.client.RequestCallback;
 import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.client.RestTemplate;
 
-public class ApplicationConfigControllerTestIT {
-    private static final String username = "desson";
-    private static final String password = "123";
-
-    private String target = "http://{serverName}:9699/config";
-    private String login = "http://{serverName}:9699/j_spring_security_check";
-
-    @Before
-    public void changeTarget() throws Exception {
-        String computerName = InetAddress.getLocalHost().getHostName();
-        if (computerName.equals("")) {
-            computerName = "localhost";
-        }
-        target = target.replace("{serverName}", computerName);
-        login = login.replace("{serverName}", computerName);
-    } 
+/**
+ *
+ * @author Desson Ariawan <teodesson@yahoo.com>
+ */
+public class ConfigurationControllerTestIT extends BaseControllerTestIT {
+    
+    @Override
+    public String getModule() {
+        return "config";
+    }
     
     @Test
     public void testSaveInvalid() {
-        ApplicationConfig u = new ApplicationConfig();
+        Configuration u = new Configuration();
 
         given()
                 .auth().form(username, password, new FormAuthConfig(login, "j_username", "j_password"))
@@ -75,7 +67,7 @@ public class ApplicationConfigControllerTestIT {
     }
 
     private String testSave(String target) {
-        ApplicationConfig config = new ApplicationConfig();
+        Configuration config = new Configuration();
         config.setName("tryout");
         config.setLabel("Tryout Configuration");
         config.setValue("test");
@@ -108,7 +100,7 @@ public class ApplicationConfigControllerTestIT {
 
     private void testUpdateExisting(String id, String name, String label,
             String value) {
-        ApplicationConfig config = new ApplicationConfig();
+        Configuration config = new Configuration();
         config.setName(name);
         config.setLabel(label);
         config.setValue(value);
@@ -179,7 +171,7 @@ public class ApplicationConfigControllerTestIT {
         given()
                 .auth().form(username, password, new FormAuthConfig(login, "j_username", "j_password"))
                 .multiPart("photo", new File("src/test/resources/snow-monkey.jpg"))
-                .multiPart("resume", "John-Doe-Resume.pdf", ApplicationConfig.class.getResourceAsStream("/John-Doe-Resume.pdf"))
+                .multiPart("resume", "John-Doe-Resume.pdf", Configuration.class.getResourceAsStream("/John-Doe-Resume.pdf"))
                 .formParam("description", "John's files")
                 .expect()
                 .body(

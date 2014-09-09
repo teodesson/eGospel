@@ -8,6 +8,7 @@
  */
 package com.dariawan.gospel.domain;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,10 +20,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ *
+ * @author Desson Ariawan <teodesson@yahoo.com>
+ */
 @Entity
 @Table(name = "app_config")
 @XmlRootElement(name = "config")
-public class ApplicationConfig {
+public class Configuration implements Serializable {
 
     @Id
     @GeneratedValue(generator = "system-uuid")

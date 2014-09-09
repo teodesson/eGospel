@@ -32,7 +32,7 @@ import org.springframework.web.util.UriTemplate;
 
 /**
  *
- * @author Desson
+ * @author Desson Ariawan <teodesson@yahoo.com>
  */
 @Controller
 public class PostController extends BaseController { 

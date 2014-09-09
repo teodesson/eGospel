@@ -20,24 +20,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+/**
+ *
+ * @author Desson Ariawan <teodesson@yahoo.com>
+ */
 public class PermissionServiceTestIT extends BaseTestIT {
-
-    @Autowired
-    private GospelService service;
 
     @Test
     public void testFindById() {
-        Permission ac = service.findPermissionById("user-edit");
+        Permission ac = gospelService.findPermissionById("user-edit");
         assertNotNull(ac);
         assertEquals("User-Edit", ac.getLabel());
         assertEquals("ROLE_USER_EDIT", ac.getValue());
-        assertNull(service.findPermissionById(null));
-        assertNull(service.findPermissionById(""));
+        assertNull(gospelService.findPermissionById(null));
+        assertNull(gospelService.findPermissionById(""));
     }
 
     @Test
     public void testFindAll() {
-        Page<Permission> result = service.findAllPermissions(new PageRequest(0, service.countAllPermissions().intValue()));
+        Page<Permission> result = gospelService.findAllPermissions(new PageRequest(0, gospelService.countAllPermissions().intValue()));
         assertTrue(result.getTotalElements() > 0);
     }
     
@@ -46,7 +47,7 @@ public class PermissionServiceTestIT extends BaseTestIT {
         Role r = new Role();
         r.setId("staff");
         
-        List<Permission> result = service.findPermissionsNotInRole(r);
+        List<Permission> result = gospelService.findPermissionsNotInRole(r);
         //assertEquals(new Integer(5), new Integer(result.size()));
         assertTrue(new Integer(5) <= new Integer(result.size()));
         

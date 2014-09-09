@@ -7,6 +7,7 @@
  */
 package com.dariawan.gospel.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,11 +24,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
- * @author Desson
+ * @author Desson Ariawan <teodesson@yahoo.com>
  */
 @Entity
 @Table(name = "dar_post")
-public class Post {
+public class Post implements Serializable {
     
     @Id
     @GeneratedValue(generator = "system-uuid")

@@ -15,21 +15,15 @@ import java.net.InetAddress;
 import static org.hamcrest.Matchers.equalTo;
 import org.junit.Before;
 
-public class HomepageControllerTestIT {
+/**
+ *
+ * @author Desson Ariawan <teodesson@yahoo.com>
+ */
+public class HomepageControllerTestIT extends BaseControllerTestIT {
 
-    private String target = "http://{serverName}:9699/homepage";
-    private String login = "http://{serverName}:9699/j_spring_security_check";
-    private final String username = "desson";
-    private final String password = "123";
-
-    @Before
-    public void changeTarget() throws Exception {
-        String computerName = InetAddress.getLocalHost().getHostName();
-        if (computerName.equals("")) {
-            computerName = "localhost";
-        }
-        target = target.replace("{serverName}", computerName);
-        login = login.replace("{serverName}", computerName);
+    @Override
+    public String getModule() {
+        return "homepage";
     }
 
     @Test

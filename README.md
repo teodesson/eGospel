@@ -55,7 +55,7 @@ Running the project :
 * AngularJS 1.2.20
 * AngularUI 0.4.0
 * Twitter Bootstrap 3.2.0
-* jQuery 1.8.3
+* jQuery 1.11.1
 * Underscore JS 1.5.2
 
 ### Tools ###

@@ -32,11 +32,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.util.UriTemplate;
 
+/**
+ *
+ * @author Desson Ariawan <teodesson@yahoo.com>
+ */
 @Controller
-public class RoleController {
+public class RoleController extends BaseController { 
 
-    @Autowired
-    private GospelService gospelService;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("/role/{id}")

@@ -20,21 +20,15 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-public class UserControllerTestIT {
+/**
+ *
+ * @author Desson Ariawan <teodesson@yahoo.com>
+ */
+public class UserControllerTestIT extends BaseControllerTestIT {
 
-    private String target = "http://{serverName}:9699/user";
-    private String login = "http://{serverName}:9699/j_spring_security_check";
-    private final String username = "desson";
-    private final String password = "123";
-
-    @Before
-    public void changeTarget() throws Exception {
-        String computerName = InetAddress.getLocalHost().getHostName();
-        if (computerName.equals("")) {
-            computerName = "localhost";
-        }
-        target = target.replace("{serverName}", computerName);
-        login = login.replace("{serverName}", computerName);
+    @Override
+    public String getModule() {
+        return "user";
     }
 
     @Test

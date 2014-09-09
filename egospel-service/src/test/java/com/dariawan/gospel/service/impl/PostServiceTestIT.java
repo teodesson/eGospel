@@ -20,29 +20,25 @@ import org.springframework.data.domain.PageRequest;
 
 /**
  *
- * @author Desson
+ * @author Desson Ariawan <teodesson@yahoo.com>
  */
-
 public class PostServiceTestIT extends BaseTestIT {
     
-    @Autowired
-    private GospelService service;
-
     @Test
     public void testFindById() {
-        Post post = service.findPostById("test");
+        Post post = gospelService.findPostById("test");
         assertNotNull(post);
         assertEquals("Test Title", post.getTitle());
         assertEquals("publish", post.getPostStatus());
         assertEquals("open", post.getCommentStatus());
         
-        assertNull(service.findPostById(null));
-        assertNull(service.findPostById(""));
+        assertNull(gospelService.findPostById(null));
+        assertNull(gospelService.findPostById(""));
     }
 
     @Test
     public void testFindAll() {
-        Page<Post> result = service.findAllPosts("post", new PageRequest(0, service.countAllPosts().intValue()));
+        Page<Post> result = gospelService.findAllPosts("post", new PageRequest(0, gospelService.countAllPosts().intValue()));
         assertTrue(result.getTotalElements() > 0);
     }
 }

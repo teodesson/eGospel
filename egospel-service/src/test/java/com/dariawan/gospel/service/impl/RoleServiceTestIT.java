@@ -20,14 +20,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+/**
+ *
+ * @author Desson Ariawan <teodesson@yahoo.com>
+ */
 public class RoleServiceTestIT extends BaseTestIT {
-
-    @Autowired
-    private GospelService service;
 
     @Test
     public void testFindById() {
-        Role role = service.findRoleById("superuser");
+        Role role = gospelService.findRoleById("superuser");
         assertNotNull(role);
         assertEquals("Super User", role.getName());
         assertEquals("Full Access", role.getDescription());
@@ -44,13 +45,13 @@ public class RoleServiceTestIT extends BaseTestIT {
             assertNotNull(perm.getValue());
         }
         
-        assertNull(service.findRoleById(null));
-        assertNull(service.findRoleById(""));
+        assertNull(gospelService.findRoleById(null));
+        assertNull(gospelService.findRoleById(""));
     }
 
     @Test
     public void testFindAll() {
-        Page<Role> result = service.findAllRoles(new PageRequest(0, service.countAllRoles().intValue()));
+        Page<Role> result = gospelService.findAllRoles(new PageRequest(0, gospelService.countAllRoles().intValue()));
         assertTrue(result.getTotalElements() > 0);
     }
 }
