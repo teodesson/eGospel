@@ -21,7 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -37,7 +36,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriTemplate;
 
 import com.dariawan.gospel.domain.Configuration;
-import com.dariawan.gospel.service.GospelService;
 import com.google.common.io.Files;
 import javax.validation.Valid;
 import org.springframework.data.domain.Pageable;

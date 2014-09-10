@@ -210,7 +210,7 @@ angular.module('dallanube.controller', ['dallanube.service', 'ngUpload'])
 
                         stagingProp.setModel('post');
                         stagingProp.setItem($scope.currentPost.id);
-                        
+
                         //$window.location.href = '/post-new';
                         $location.path('/content/post-new');
                     });
@@ -547,6 +547,7 @@ angular.module('dallanube.controller', ['dallanube.service', 'ngUpload'])
                 }
             }])
         .controller('UserController', ['$http', '$scope', 'UserService', 'RoleService', function($http, $scope, UserService, RoleService) {
+                $scope.errorOccured = false;
                 $scope.usermsg = {};
                 $http.get('homepage/usermsg').success(function(data) {
                     $scope.usermsg = data;
@@ -581,6 +582,7 @@ angular.module('dallanube.controller', ['dallanube.service', 'ngUpload'])
                     $scope.deleteUser = x;
                 };
                 $scope.add = function() {
+                    $scope.errorOccured = false;
                     $scope.currentUser = null;
                     $scope.original = null;
                 }
@@ -594,7 +596,7 @@ angular.module('dallanube.controller', ['dallanube.service', 'ngUpload'])
                     UserService.save(obj)
                             .success(function() {
                                 $scope.reloadUserpage();
-                                $scope.add();
+                                $scope.add();                                
                             });
                 }
                 $scope.uploadComplete = function(content, completed) {
@@ -602,6 +604,9 @@ angular.module('dallanube.controller', ['dallanube.service', 'ngUpload'])
                         $scope.currentUser.uploadError = content.msg + "  [" + content.status + "]";
                         if (content.status == "200") {
                             $scope.save();
+                        }
+                        else {
+                            $scope.errorOccured = true;
                         }
                     }
                 }
@@ -632,8 +637,9 @@ angular.module('dallanube.controller', ['dallanube.service', 'ngUpload'])
 //        }
             }])
         .controller('SignupController', ['$scope', 'UserService', function($scope, UserService) {
+                $scope.errorOccured = false;
                 $scope.currentUser = null;
-                $scope.users = UserService.query();
+                //$scope.users = UserService.query();
                 $scope.add = function() {
                     $scope.currentUser = null;
                     $scope.original = null;
@@ -649,8 +655,9 @@ angular.module('dallanube.controller', ['dallanube.service', 'ngUpload'])
                     console.log("Save obj ", obj);
                     UserService.save(obj)
                             .success(function() {
-                                $scope.users = UserService.query();
-                                $scope.add();
+                                $scope.errorOccured = true;
+                                //$scope.users = UserService.query();
+                                //$scope.add();
                             });
                 }
                 $scope.isClean = function() {

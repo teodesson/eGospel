@@ -19,7 +19,7 @@ Automated testing used :
 	* http://code.google.com/p/rest-assured/wiki/Usage 
 	* http://www.hascode.com/2011/10/testing-restful-web-services-made-easy-using-the-rest-assured-framework/ 
 
-## REST API Discovery & Documentation ##	
+### REST API Discovery & Documentation ###	
 
 Swagger UI is a dependency-free collection of HTML, Javascript, and CSS assets that dynamically generate beautiful documentation from a Swagger-compliant API
 http://swagger.wordnik.com/

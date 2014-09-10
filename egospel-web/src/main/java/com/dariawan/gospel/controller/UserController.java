@@ -77,6 +77,7 @@ public class UserController extends BaseController {
         if(multipartFile == null || multipartFile.isEmpty()){
             result.put("msg", "No file uploaded");
             result.put("status", "400");
+            //result.put("status", "200"); // it's ok
         }else {
             String extension = tokenizer(multipartFile.getOriginalFilename(), ".");
             if(FILE_EXTENSION.contains(extension.toLowerCase())){
