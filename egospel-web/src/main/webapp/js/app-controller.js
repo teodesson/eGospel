@@ -603,6 +603,9 @@ angular.module('dallanube.controller', ['dallanube.service', 'ngUpload'])
                     if (completed) {
                         $scope.currentUser.uploadError = content.msg + "  [" + content.status + "]";
                         if (content.status == "200") {
+                            if (content.msg=='No file uploaded') {
+                                $scope.currentUser.photo = 'no_photo';
+                            }
                             $scope.save();
                         }
                         else {

@@ -76,8 +76,8 @@ public class UserController extends BaseController {
         
         if(multipartFile == null || multipartFile.isEmpty()){
             result.put("msg", "No file uploaded");
-            result.put("status", "400");
-            //result.put("status", "200"); // it's ok
+            //result.put("status", "400");
+            result.put("status", "200"); // it's ok
         }else {
             String extension = tokenizer(multipartFile.getOriginalFilename(), ".");
             if(FILE_EXTENSION.contains(extension.toLowerCase())){
@@ -111,7 +111,13 @@ public class UserController extends BaseController {
         }
         
         // change to img/user/no_photo.jpg
-        String filename = "pic_" + x.getUsername().toLowerCase() + "." + tokenizer(defaultPhoto, ".");
+        String filename;        
+        if ("no_photo".equals(x.getPhoto())) {
+            filename = "no_photo.jpg";
+        } 
+        else {
+            filename = "pic_" + x.getUsername().toLowerCase() + "." + tokenizer(defaultPhoto, ".");
+        }
         x.setPhoto(pathPhoto + File.separator + filename);
         logger.debug("SET PHOTO PATH : " + x.getPhoto());
         
