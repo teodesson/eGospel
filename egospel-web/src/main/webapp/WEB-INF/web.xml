@@ -55,7 +55,7 @@
         <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
     </filter>
 	
-    <!-- Monitor aplikasi menggunakan javamelody -->
+    <!-- Application monitoring using javamelody -->
     <filter>
         <filter-name>monitoring</filter-name>
         <filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
