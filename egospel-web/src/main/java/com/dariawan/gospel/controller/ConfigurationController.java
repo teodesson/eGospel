@@ -36,6 +36,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriTemplate;
 
 import com.dariawan.gospel.domain.Configuration;
+import com.google.common.hash.Hashing;
 import com.google.common.io.Files;
 import javax.validation.Valid;
 import org.springframework.data.domain.Pageable;
@@ -45,6 +46,7 @@ import org.springframework.data.domain.Pageable;
  * @author Desson Ariawan <teodesson@yahoo.com>
  */
 @Controller
+//@Api(value = "configuration", description = "configuration") // Swagger annotation
 public class ConfigurationController extends BaseController { 
 
     private static final String ESC_CHAR_DOT = "\\.";
@@ -116,7 +118,8 @@ public class ConfigurationController extends BaseController {
     }
 
     @RequestMapping(value = "/config", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.CREATED)    
+    //@ApiOperation(httpMethod = "POST", value = "create")
     public void create(@RequestBody @Valid Configuration config, HttpServletRequest request, HttpServletResponse response) {
         gospelService.save(config);
         String requestUrl = request.getRequestURL().toString();
@@ -190,7 +193,7 @@ public class ConfigurationController extends BaseController {
     }
 
     private String createMD5Sum(File file) throws Exception {
-        byte[] checksum = Files.getDigest(file, MessageDigest.getInstance("MD5"));
+        byte[] checksum = Files.hash(file, Hashing.md5()).asBytes();
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < checksum.length; i++) {
             result.append(Integer.toString((checksum[i] & 0xff) + 0x100, 16).substring(1));

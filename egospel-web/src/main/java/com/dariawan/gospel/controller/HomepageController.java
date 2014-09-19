@@ -31,11 +31,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.stereotype.Controller;
 
 /**
  *
  * @author Desson Ariawan <teodesson@yahoo.com>
  */
+@Controller
 public class HomepageController extends BaseController {
 
     @Autowired

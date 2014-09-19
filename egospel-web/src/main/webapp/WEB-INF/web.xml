@@ -93,11 +93,10 @@
             <param-value>
                 /WEB-INF/springmvc-context.xml
             </param-value>
-        </init-param>
+        </init-param>     
         <load-on-startup>1</load-on-startup>
     </servlet>
-
-
+    
     <filter-mapping>
         <filter-name>httpMethodFilter</filter-name>
         <servlet-name>Spring MVC Dispatcher Servlet</servlet-name>

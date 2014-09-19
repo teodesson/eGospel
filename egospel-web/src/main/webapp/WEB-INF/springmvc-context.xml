@@ -27,11 +27,12 @@
         </mvc:argument-resolvers>
     </mvc:annotation-driven>
 
-    <context:component-scan base-package="com.dariawan.gospel.controller" />
+<!--    <context:component-scan base-package="com.dariawan.gospel.controller" />-->
 
     <context:annotation-config />
     
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+    
     <!-- change default servlet in Tomcat and Jetty -->
     <!-- needed if we map DispatcherServlet to / -->
     <!-- so we still able to access folder besides WEB-INF, 
