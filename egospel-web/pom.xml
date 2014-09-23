@@ -32,11 +32,11 @@
             <!--<scope>runtime</scope>-->
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.jolbox</groupId>
             <artifactId>bonecp</artifactId>
-            <version>0.7.1.RELEASE</version>
-        </dependency>
+            <version>${bonecp.version}</version>
+        </dependency>-->
                 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -62,20 +62,19 @@
             <version>${org.springframework.security.version}</version>
         </dependency>
 
-<!--        <dependency>
+        <!--<dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson2.version}</version>
-        </dependency>-->
-		            
+        </dependency>-->            
 
         <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>${servlet.version}</version>
-            <scope>provided</scope>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet.api.version}</version>
+            <scope>provided</scope>            
         </dependency>
-
+        
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
@@ -105,14 +104,14 @@
         <dependency>
             <groupId>com.mangofactory</groupId>
             <artifactId>swagger-springmvc</artifactId>
-            <version>0.8.8</version>
+            <version>${swagger-springmvc.version}</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-jaxrs</artifactId>
-            <version>1.9.13</version>
-        </dependency>
+            <version>${jackson-jaxrs.version}</version>
+        </dependency>-->
     </dependencies>
 
     <build>

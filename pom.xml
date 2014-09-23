@@ -52,24 +52,27 @@
         <org.springframework.security.version>3.2.5.RELEASE</org.springframework.security.version>
         <org.hibernate.version>4.3.6.Final</org.hibernate.version>
         <org.hibernate.validator.version>5.1.2.Final</org.hibernate.validator.version>
-		
+	<swagger-springmvc.version>0.8.8</swagger-springmvc.version>
+        <!--<jackson-jaxrs.version>1.9.13</jackson-jaxrs.version>-->
+        
         <commons-logging.version>1.1.1</commons-logging.version>
         <org.slf4j.version>1.7.5</org.slf4j.version>
         <ch.qos.logback.version>1.0.13</ch.qos.logback.version>
 		
-        <joda-time.version>2.3</joda-time.version>
+        <!--<joda-time.version>2.3</joda-time.version>-->
         <jackson2.version>2.2.0</jackson2.version>
-		
+	
+        <!--<bonecp.version>0.7.1.RELEASE</bonecp.version>-->
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <mysql.version>5.1.25</mysql.version>
-        <postgresql.version>9.1-901.jdbc4</postgresql.version>
+        <!--<postgresql.version>9.1-901.jdbc4</postgresql.version>-->
 		
         <junit.version>4.11</junit.version>
         <dbunit.version>2.4.9</dbunit.version>
-        <jacoco-maven-plugin.version>0.5.3.201107060350</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.7.2.201409121644</jacoco-maven-plugin.version>
 		
-        <servlet.version>2.5</servlet.version>
-        <commons-fileupload.version>1.3</commons-fileupload.version>
+        <servlet.api.version>3.0.1</servlet.api.version>
+        <commons-fileupload.version>1.3.1</commons-fileupload.version>
         <commons-io.version>2.4</commons-io.version>
         <guava.version>15.0</guava.version>
 		
@@ -93,9 +96,9 @@
         <appserver.deployment.context>/</appserver.deployment.context>
 
         <!-- sonar configuration -->
-        <sonar.jacoco.itReportPath>${project.build.directory}/jacoco.exec</sonar.jacoco.itReportPath>
+        <!--<sonar.jacoco.itReportPath>${project.build.directory}/jacoco.exec</sonar.jacoco.itReportPath>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-        <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
+        <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>-->
 
         <!-- repository artifact configuration -->
         <!--
@@ -143,11 +146,11 @@
             <scope>runtime</scope>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
             <version>${joda-time.version}</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>junit</groupId>

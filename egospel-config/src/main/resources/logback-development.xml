@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <included>
 
-	<logger name="org.hibernate.type" level="TRACE">
+        <!--<logger name="org.hibernate.type" level="TRACE">
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="FILE" />
 	</logger>
@@ -9,7 +9,7 @@
 	<logger name="org.hibernate.SQL" level="TRACE">
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="FILE" />
-	</logger>
+	</logger>-->
 
 	<logger name="com.dariawan" level="DEBUG">
 		<appender-ref ref="STDOUT" />
