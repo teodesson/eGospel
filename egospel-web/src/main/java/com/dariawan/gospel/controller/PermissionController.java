@@ -35,9 +35,9 @@ import org.springframework.web.util.UriTemplate;
 @Controller
 public class PermissionController extends BaseController { 
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping("/permission/{id}")
+    @RequestMapping("/gospel/permission/{id}")
     @ResponseBody
     public Permission findById(@PathVariable String id) {
         Permission x = gospelService.findPermissionById(id);
@@ -47,7 +47,7 @@ public class PermissionController extends BaseController {
         return x;
     }
 
-    @RequestMapping(value = "/permission", method = RequestMethod.POST)
+    @RequestMapping(value = "/gospel/permission", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody @Valid Permission x, HttpServletRequest request, HttpServletResponse response) {
         gospelService.save(x);
@@ -56,7 +56,7 @@ public class PermissionController extends BaseController {
         response.setHeader("Location", uri.toASCIIString());
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/permission/{id}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/gospel/permission/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void update(@PathVariable String id, @RequestBody @Valid Permission x) {
         Permission a = gospelService.findPermissionById(id);
@@ -68,7 +68,7 @@ public class PermissionController extends BaseController {
         gospelService.save(x);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/permission/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/gospel/permission/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable String id) {
         Permission a = gospelService.findPermissionById(id);
@@ -79,14 +79,14 @@ public class PermissionController extends BaseController {
         gospelService.delete(a);
     }
 
-    @RequestMapping(value = "/permission4page", method = RequestMethod.GET)
+    @RequestMapping(value = "/gospel/permission4page", method = RequestMethod.GET)
     @ResponseBody
     public Page<Permission> findAll(
             Pageable pageable) {
         return gospelService.findAllPermissions(pageable);
     }
 
-    @RequestMapping(value = "/permission", method = RequestMethod.GET)
+    @RequestMapping(value = "/gospel/permission", method = RequestMethod.GET)
     @ResponseBody
     public List<Permission> findAll() {
         return gospelService.findAllPermissions();

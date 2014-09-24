@@ -41,7 +41,7 @@ public class ConfigurationControllerTestIT extends BaseControllerTestIT {
     
     @Override
     public String getModule() {
-        return "config";
+        return "gospel/config";
     }
     
     @Test

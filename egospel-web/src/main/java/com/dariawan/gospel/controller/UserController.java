@@ -54,7 +54,7 @@ public class UserController extends BaseController {
 
     private final String DEFAULT_PHOTO = "img/user/no_photo.jpg";
     
-    @RequestMapping("/user/{id}")
+    @RequestMapping("/gospel/user/{id}")
     @ResponseBody
     public User findById(@PathVariable String id) {
         User x = gospelService.findUserById(id);
@@ -65,7 +65,7 @@ public class UserController extends BaseController {
         return x;
     }
     
-    @RequestMapping(value = "/user/photo", method = RequestMethod.POST)
+    @RequestMapping(value = "/gospel/user/photo", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public Map<String, Object> upload(@RequestParam(value="photo", required=true) MultipartFile multipartFile, 
@@ -98,7 +98,7 @@ public class UserController extends BaseController {
         return result;
     }
     
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
+    @RequestMapping(value = "/gospel/user", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody @Valid User x, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         String defaultPhoto = DEFAULT_PHOTO;
@@ -148,7 +148,7 @@ public class UserController extends BaseController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/user/{id}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/gospel/user/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void update(@PathVariable String id, @RequestBody @Valid User x, HttpServletRequest request, HttpSession session) {
         User a = gospelService.findUserById(id);
@@ -181,7 +181,7 @@ public class UserController extends BaseController {
         session.removeAttribute(SESSION_KEY_IMAGE);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/user/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/gospel/user/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable String id) {
         User a = gospelService.findUserById(id);
@@ -192,7 +192,7 @@ public class UserController extends BaseController {
         gospelService.delete(a);
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    @RequestMapping(value = "/gospel/user", method = RequestMethod.GET)
     @ResponseBody
     public List<User> findAll() {
         List<User> result = gospelService.findAllUsers();
@@ -202,7 +202,7 @@ public class UserController extends BaseController {
         return result;
     }
 
-    @RequestMapping(value = "/user4page", method = RequestMethod.GET)
+    @RequestMapping(value = "/gospel/user4page", method = RequestMethod.GET)
     @ResponseBody
     public Page<User> findAll(
             Pageable pageable) {

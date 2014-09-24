@@ -45,7 +45,7 @@ public class HomepageController extends BaseController {
     @Autowired
     private MessageSource messageSource;
 
-    @RequestMapping("/homepage/userinfo")
+    @RequestMapping("/gospel/homepage/userinfo")
     @ResponseBody
     public Map<String, String> userInfo() {
         Map<String, String> result = new HashMap<>();
@@ -61,20 +61,10 @@ public class HomepageController extends BaseController {
             result.put("user", "undefined");
             result.put("group", "undefined");
         }
-
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null) {
-            Object principal = auth.getPrincipal();
-            if (principal != null && User.class.isAssignableFrom(principal.getClass())) {
-                User u = (User) principal;
-
-            }
-        }
-
         return result;
     }
 
-    @RequestMapping("/homepage/myuserinfo")
+    @RequestMapping("/gospel/homepage/myuserinfo")
     @ResponseBody
     public com.dariawan.gospel.domain.User getMyUserInfo() {
         com.dariawan.gospel.domain.User ux = null;
@@ -90,7 +80,7 @@ public class HomepageController extends BaseController {
         return ux;
     }
 
-    @RequestMapping("/homepage/appinfo")
+    @RequestMapping("/gospel/homepage/appinfo")
     @ResponseBody
     public Map<String, String> appInfo(HttpServletRequest request) {
 
@@ -107,7 +97,7 @@ public class HomepageController extends BaseController {
         return result;
     }
 
-    @RequestMapping("/homepage/sessioninfo")
+    @RequestMapping("/gospel/homepage/sessioninfo")
     @ResponseBody
     public List<Map<String, String>> sessionInfo() {
 
@@ -118,7 +108,7 @@ public class HomepageController extends BaseController {
             for (SessionInformation i : info) {
                 Object p = i.getPrincipal();
                 if (p != null && User.class.isAssignableFrom(p.getClass())) {
-                    Map<String, String> usermap = new HashMap<String, String>();
+                    Map<String, String> usermap = new HashMap<>();
 
                     User u = (User) p;
                     usermap.put("username", u.getUsername());
@@ -133,7 +123,7 @@ public class HomepageController extends BaseController {
         return userAktif;
     }
 
-    @RequestMapping(value = "/homepage/kick/{sessionid}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/gospel/homepage/kick/{sessionid}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void forceLogout(@PathVariable String sessionid) {
         SessionInformation info = sessionRegistry.getSessionInformation(sessionid);
@@ -142,7 +132,7 @@ public class HomepageController extends BaseController {
         }
     }
 
-    @RequestMapping("/homepage/usermsg")
+    @RequestMapping("/gospel/homepage/usermsg")
     @ResponseBody
     public Map<String, String> userPage(HttpServletRequest request) {
 

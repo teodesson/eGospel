@@ -13,12 +13,10 @@ import com.dariawan.gospel.domain.User;
 import static com.jayway.restassured.RestAssured.given;
 import static com.jayway.restassured.RestAssured.with;
 import com.jayway.restassured.authentication.FormAuthConfig;
-import java.net.InetAddress;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItems;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -29,7 +27,7 @@ public class PostControllerTestIT extends BaseControllerTestIT {
     
     @Override
     public String getModule() {
-        return "post";
+        return "gospel/post";
     }
     
     @Test

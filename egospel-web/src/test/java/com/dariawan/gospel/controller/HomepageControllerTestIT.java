@@ -11,9 +11,7 @@ import com.jayway.restassured.authentication.FormAuthConfig;
 import org.junit.Test;
 
 import static com.jayway.restassured.RestAssured.with;
-import java.net.InetAddress;
 import static org.hamcrest.Matchers.equalTo;
-import org.junit.Before;
 
 /**
  *
@@ -23,7 +21,7 @@ public class HomepageControllerTestIT extends BaseControllerTestIT {
 
     @Override
     public String getModule() {
-        return "homepage";
+        return "gospel/homepage";
     }
 
     @Test

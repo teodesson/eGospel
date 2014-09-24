@@ -9,7 +9,6 @@ package com.dariawan.gospel.controller;
 
 import java.io.File;
 import java.net.URI;
-import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -55,7 +54,7 @@ public class ConfigurationController extends BaseController {
     
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping("/config/{id}/files")
+    @RequestMapping("/gospel/config/{id}/files")
     @ResponseBody
     public Map<String, String> uploadFiles(
             @PathVariable String id,
@@ -107,7 +106,7 @@ public class ConfigurationController extends BaseController {
         return result;
     }
 
-    @RequestMapping("/config/{id}")
+    @RequestMapping("/gospel/config/{id}")
     @ResponseBody
     public Configuration findConfigurationById(@PathVariable String id) {
         Configuration config = gospelService.findConfigurationById(id);
@@ -117,7 +116,7 @@ public class ConfigurationController extends BaseController {
         return config;
     }
 
-    @RequestMapping(value = "/config", method = RequestMethod.POST)
+    @RequestMapping(value = "/gospel/config", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)    
     //@ApiOperation(httpMethod = "POST", value = "create")
     public void create(@RequestBody @Valid Configuration config, HttpServletRequest request, HttpServletResponse response) {
@@ -127,7 +126,7 @@ public class ConfigurationController extends BaseController {
         response.setHeader("Location", uri.toASCIIString());
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/config/{id}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/gospel/config/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void update(@PathVariable String id, @RequestBody @Valid Configuration config) {
         Configuration a = gospelService.findConfigurationById(id);
@@ -139,7 +138,7 @@ public class ConfigurationController extends BaseController {
         gospelService.save(config);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/config/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/gospel/config/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable String id) {
         Configuration a = gospelService.findConfigurationById(id);
@@ -150,7 +149,7 @@ public class ConfigurationController extends BaseController {
         gospelService.delete(a);
     }
 
-    @RequestMapping(value = "/config", method = RequestMethod.GET)
+    @RequestMapping(value = "/gospel/config", method = RequestMethod.GET)
     @ResponseBody
     public List<Configuration> findAll(
             @RequestParam(required = false) String search,
@@ -165,7 +164,7 @@ public class ConfigurationController extends BaseController {
 
     }
 
-    @RequestMapping(value = "/config/upload", method = RequestMethod.POST)
+    @RequestMapping(value = "/gospel/config/upload", method = RequestMethod.POST)
     @ResponseBody
     public List<Map<String, String>> testUpload(@RequestParam(value = "uploadedfiles[]") List<MultipartFile> listPhoto) throws Exception {
 

@@ -39,7 +39,7 @@ public class RoleController extends BaseController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping("/role/{id}")
+    @RequestMapping("/gospel/role/{id}")
     @ResponseBody
     public Role findById(@PathVariable String id) {
         Role x = gospelService.findRoleById(id);
@@ -49,19 +49,19 @@ public class RoleController extends BaseController {
         return x;
     }
     
-    @RequestMapping("/role/{id}/unselected-permission")
+    @RequestMapping("/gospel/role/{id}/unselected-permission")
     @ResponseBody
     public List<Permission> findPermissionNotInRole(@PathVariable String id) {
         return gospelService.findPermissionsNotInRole(gospelService.findRoleById(id));
     }
     
-    @RequestMapping("/role/{id}/unselected-menu")
+    @RequestMapping("/gospel/role/{id}/unselected-menu")
     @ResponseBody
     public List<Menu> findMenuNotInRole(@PathVariable String id) {
         return gospelService.findMenuNotInRole(gospelService.findRoleById(id));
     }
 
-    @RequestMapping(value = "/role", method = RequestMethod.POST)
+    @RequestMapping(value = "/gospel/role", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody @Valid Role x, HttpServletRequest request, HttpServletResponse response) {
         gospelService.save(x);
@@ -70,7 +70,7 @@ public class RoleController extends BaseController {
         response.setHeader("Location", uri.toASCIIString());
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/role/{id}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/gospel/role/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void update(@PathVariable String id, @RequestBody @Valid Role x) {
         Role a = gospelService.findRoleById(id);
@@ -82,7 +82,7 @@ public class RoleController extends BaseController {
         gospelService.save(x);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/role/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/gospel/role/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable String id) {
         Role a = gospelService.findRoleById(id);
@@ -93,7 +93,7 @@ public class RoleController extends BaseController {
         gospelService.delete(a);
     }
 
-    @RequestMapping(value = "/role", method = RequestMethod.GET)
+    @RequestMapping(value = "/gospel/role", method = RequestMethod.GET)
     @ResponseBody
     public List<Role> findAll() {
         List<Role> result = gospelService.findAllRoles();
@@ -104,7 +104,7 @@ public class RoleController extends BaseController {
         return result;
     }
     
-    @RequestMapping(value = "/role4page", method = RequestMethod.GET)
+    @RequestMapping(value = "/gospel/role4page", method = RequestMethod.GET)
     @ResponseBody
     public Page<Role> findAll(
             Pageable pageable) {

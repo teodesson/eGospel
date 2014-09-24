@@ -35,9 +35,9 @@ import org.springframework.web.util.UriTemplate;
 @Controller
 public class MenuController extends BaseController { 
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping("/menu/{id}")
+    @RequestMapping("/gospel/menu/{id}")
     @ResponseBody
     public Menu findById(@PathVariable String id) {
         Menu x = gospelService.findMenuById(id);
@@ -47,7 +47,7 @@ public class MenuController extends BaseController {
         return x;
     }
 
-    @RequestMapping(value = "/menu", method = RequestMethod.POST)
+    @RequestMapping(value = "/gospel/menu", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody @Valid Menu x, HttpServletRequest request, HttpServletResponse response) {
         gospelService.save(x);
@@ -56,7 +56,7 @@ public class MenuController extends BaseController {
         response.setHeader("Location", uri.toASCIIString());
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/menu/{id}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/gospel/menu/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void update(@PathVariable String id, @RequestBody @Valid Menu x) {
         Menu a = gospelService.findMenuById(id);
@@ -68,7 +68,7 @@ public class MenuController extends BaseController {
         gospelService.save(x);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/menu/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/gospel/menu/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable String id) {
         Menu a = gospelService.findMenuById(id);
@@ -79,17 +79,16 @@ public class MenuController extends BaseController {
         gospelService.delete(a);
     }
 
-    @RequestMapping(value = "/menu", method = RequestMethod.GET)
+    @RequestMapping(value = "/gospel/menu", method = RequestMethod.GET)
     @ResponseBody
     public List<Menu> findAll() {
         return gospelService.findAllMenu();
     }
     
-    @RequestMapping(value = "/menu4page", method = RequestMethod.GET)
+    @RequestMapping(value = "/gospel/menu4page", method = RequestMethod.GET)
     @ResponseBody
     public Page<Menu> findAll(Pageable pageable) {
         return gospelService.findAllMenu(pageable);
-
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)

@@ -39,7 +39,7 @@ public class PostController extends BaseController {
     
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping("/post/{id}")
+    @RequestMapping("/gospel/post/{id}")
     @ResponseBody
     public Post findById(@PathVariable String id) {
         Post x = gospelService.findPostById(id);
@@ -55,7 +55,7 @@ public class PostController extends BaseController {
         return x;
     }
     
-    @RequestMapping(value = "/post", method = RequestMethod.POST)
+    @RequestMapping(value = "/gospel/post", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody @Valid Post x, HttpServletRequest request, HttpServletResponse response) {
         User ux = getCurrentUser(request);
@@ -67,7 +67,7 @@ public class PostController extends BaseController {
         response.setHeader("Location", uri.toASCIIString());
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/post/{id}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/gospel/post/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void update(@PathVariable String id, @RequestBody @Valid Post x) {
         Post a = gospelService.findPostById(id);
@@ -81,7 +81,7 @@ public class PostController extends BaseController {
         gospelService.save(a);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/post/{id}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/gospel/post/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable String id) {
         Post a = gospelService.findPostById(id);
@@ -92,7 +92,7 @@ public class PostController extends BaseController {
         gospelService.delete(a);
     }
 
-    @RequestMapping(value = "/post4page", method = RequestMethod.GET)
+    @RequestMapping(value = "/gospel/post4page", method = RequestMethod.GET)
     @ResponseBody
     public Page<Post> findAll(
             @RequestParam(required = true) String postType,
@@ -106,7 +106,7 @@ public class PostController extends BaseController {
     }   
     
     // help creation of object
-    @RequestMapping("/post/dummy")
+    @RequestMapping("/gospel/post/dummy")
     @ResponseBody
     public Post getADummyPost() {
         Role r = new Role();
