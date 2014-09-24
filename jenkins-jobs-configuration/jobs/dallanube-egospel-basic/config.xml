@@ -70,7 +70,7 @@
       <jobAdditionalProperties></jobAdditionalProperties>
     </hudson.plugins.sonar.SonarPublisher>
     <hudson.tasks.BuildTrigger>
-      <childProjects>dallanube-restful-deploy-test-db</childProjects>
+      <childProjects>egospel-deploy-test-db</childProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

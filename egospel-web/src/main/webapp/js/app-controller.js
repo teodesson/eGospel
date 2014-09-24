@@ -1,4 +1,4 @@
-angular.module('dallanube.controller', ['dallanube.service', 'ngUpload'])
+angular.module('gospel.controller', ['gospel.service', 'ngUpload'])
         .controller('LoginRedirectorController', ['$window', function($window) {
                 $window.location = 'login.html';
             }])

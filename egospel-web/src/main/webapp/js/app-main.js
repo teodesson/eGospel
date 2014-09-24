@@ -1,4 +1,4 @@
-angular.module('dallanube', ['ngRoute', 'ui', 'dallanube.controller'])
+angular.module('gospel', ['ngRoute', 'ui', 'gospel.controller'])
     .config(['$routeProvider', function($routeProvider){
         $routeProvider
             .when('/', {templateUrl: 'pages/home.html'})

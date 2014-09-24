@@ -1,4 +1,4 @@
-angular.module('dallanube.service', ['ngResource'])
+angular.module('gospel.service', ['ngResource'])
     .service('stagingProp', function () {
         var item;
         var model = 'empty';
