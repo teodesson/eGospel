@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <app_config
+    <dar_config
         id="abc123"
         name="applicationName"
         label="Application Name"
         value="eGospel"
     />
     
-    <app_config
+    <dar_config
         id="def456"
         name="applicationVersion"
         label="Application Version"

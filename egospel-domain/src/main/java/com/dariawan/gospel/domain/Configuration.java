@@ -25,7 +25,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author Desson Ariawan <teodesson@yahoo.com>
  */
 @Entity
-@Table(name = "app_config")
+@Table(name = "dar_config")
 @XmlRootElement(name = "config")
 public class Configuration implements Serializable {
 

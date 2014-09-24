@@ -29,7 +29,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author Desson Ariawan <teodesson@yahoo.com>
  */
 @Entity
-@Table(name = "app_role")
+@Table(name = "dar_role")
 public class Role implements Serializable {
     
     @Id
@@ -47,7 +47,7 @@ public class Role implements Serializable {
     
     @ManyToMany
     @JoinTable(
-        name="app_role_permission", 
+        name="dar_role_permission", 
         joinColumns=@JoinColumn(name="id_role", nullable=false),
         inverseJoinColumns=@JoinColumn(name="id_permission", nullable=false)
     )
@@ -55,7 +55,7 @@ public class Role implements Serializable {
     
     @ManyToMany
     @JoinTable(
-        name="app_role_menu", 
+        name="dar_role_menu", 
         joinColumns=@JoinColumn(name="id_role", nullable=false),
         inverseJoinColumns=@JoinColumn(name="id_menu", nullable=false)
     )

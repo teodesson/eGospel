@@ -66,17 +66,17 @@
         <beans:property name="usersByUsernameQuery">
             <beans:value>
                 select username,password,account_enabled
-                from app_user
+                from dar_user
                 where username = ?
             </beans:value>
         </beans:property>
         <beans:property name="groupAuthoritiesByUsernameQuery">
             <beans:value>
                 select r.id, r.name as group_name, p.permission_value as authority
-                from app_user u
-                inner join app_role r on u.id_role = r.id
-                inner join app_role_permission rp on rp.id_role = r.id
-                inner join app_permission p on rp.id_permission = p.id
+                from dar_user u
+                inner join dar_role r on u.id_role = r.id
+                inner join dar_role_permission rp on rp.id_role = r.id
+                inner join dar_permission p on rp.id_permission = p.id
                 where username = ?
             </beans:value>
         </beans:property>

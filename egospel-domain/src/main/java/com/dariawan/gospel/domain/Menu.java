@@ -26,7 +26,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author Desson Ariawan <teodesson@yahoo.com>
  */
 @Entity
-@Table(name = "app_menu")
+@Table(name = "dar_menu")
 public class Menu implements Serializable {
 
     @Id

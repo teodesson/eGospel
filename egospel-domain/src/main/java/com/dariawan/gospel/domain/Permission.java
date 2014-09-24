@@ -22,7 +22,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author Desson Ariawan <teodesson@yahoo.com>
  */
 @Entity
-@Table(name = "app_permission")
+@Table(name = "dar_permission")
 public class Permission implements Serializable {
     @Id
     @GeneratedValue(generator = "system-uuid")

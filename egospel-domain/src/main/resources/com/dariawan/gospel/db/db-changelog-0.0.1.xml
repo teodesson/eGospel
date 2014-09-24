@@ -3,7 +3,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
     <changeSet id="1" author="desson">
-        <createTable tableName="app_config">
+        <createTable tableName="dar_config">
             <column name="id" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false" />
             </column>
@@ -17,7 +17,7 @@
                 <constraints nullable="false" />
             </column>
         </createTable>
-        <createTable tableName="app_menu">
+        <createTable tableName="dar_menu">
             <column name="id" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false" />
             </column>
@@ -35,7 +35,7 @@
             <column name="id_parent" type="varchar(255)" />
         </createTable>
         
-        <createTable tableName="app_permission">
+        <createTable tableName="dar_permission">
             <column name="id" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false" />
             </column>
@@ -47,7 +47,7 @@
             </column>
         </createTable>
         
-        <createTable tableName="app_role">
+        <createTable tableName="dar_role">
             <column name="id" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false" />
             </column>
@@ -56,7 +56,7 @@
             </column>
             <column name="description" type="varchar(255)" />
         </createTable>
-        <createTable tableName="app_role_permission">
+        <createTable tableName="dar_role_permission">
             <column name="id_role" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false" />
             </column>
@@ -64,7 +64,7 @@
                 <constraints primaryKey="true" nullable="false" />
             </column>
         </createTable>
-        <createTable tableName="app_role_menu">
+        <createTable tableName="dar_role_menu">
             <column name="id_role" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false" />
             </column>
@@ -72,7 +72,7 @@
                 <constraints primaryKey="true" nullable="false" />
             </column>
         </createTable>
-        <createTable tableName="app_user">
+        <createTable tableName="dar_user">
             <column name="id" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false" />
             </column>
@@ -142,70 +142,70 @@
         <addForeignKeyConstraint
             constraintName="fk_menu_parent"
             baseColumnNames="id_parent"
-            baseTableName="app_menu"
-            referencedTableName="app_menu"
+            baseTableName="dar_menu"
+            referencedTableName="dar_menu"
             referencedColumnNames="id"
         />
         <addUniqueConstraint
             constraintName="unique_permission_value"
             columnNames="permission_value"
-            tableName="app_permission"
+            tableName="dar_permission"
         />
         <addUniqueConstraint
             constraintName="unique_role_name"
             columnNames="name"
-            tableName="app_role"
+            tableName="dar_role"
         />
         <addForeignKeyConstraint
             constraintName="fk_role_permission_role"
             baseColumnNames="id_role"
-            baseTableName="app_role_permission"
-            referencedTableName="app_role"
+            baseTableName="dar_role_permission"
+            referencedTableName="dar_role"
             referencedColumnNames="id"
         />
         <addForeignKeyConstraint
             constraintName="fk_role_permission_permission"
             baseColumnNames="id_permission"
-            baseTableName="app_role_permission"
-            referencedTableName="app_permission"
+            baseTableName="dar_role_permission"
+            referencedTableName="dar_permission"
             referencedColumnNames="id"
         />
         <addForeignKeyConstraint
             constraintName="fk_role_menu_role"
             baseColumnNames="id_role"
-            baseTableName="app_role_menu"
-            referencedTableName="app_role"
+            baseTableName="dar_role_menu"
+            referencedTableName="dar_role"
             referencedColumnNames="id"
         />
         <addForeignKeyConstraint
             constraintName="fk_role_menu_menu"
             baseColumnNames="id_menu"
-            baseTableName="app_role_menu"
-            referencedTableName="app_menu"
+            baseTableName="dar_role_menu"
+            referencedTableName="dar_menu"
             referencedColumnNames="id"
         />
         <addUniqueConstraint
             constraintName="unique_user_username"
             columnNames="username"
-            tableName="app_user"
+            tableName="dar_user"
         />
         <addForeignKeyConstraint
             constraintName="fk_user_role"
             baseColumnNames="id_role"
-            baseTableName="app_user"
-            referencedTableName="app_role"
+            baseTableName="dar_user"
+            referencedTableName="dar_role"
             referencedColumnNames="id"
         />
         <addForeignKeyConstraint
             constraintName="fk_post_author"
             baseColumnNames="id_author"
             baseTableName="dar_post"
-            referencedTableName="app_user"
+            referencedTableName="dar_user"
             referencedColumnNames="id"
         />
     </changeSet>
     <changeSet id="3" author="desson">
-        <loadData tableName="app_menu" file="com/dariawan/gospel/db/data/menu.csv">
+        <loadData tableName="dar_menu" file="com/dariawan/gospel/db/data/menu.csv">
             <column header="id" type="STRING"/>
             <column header="label" type="STRING"/>
             <column header="menu_action" type="STRING"/>
@@ -214,25 +214,25 @@
             <column header="menu_options" type="STRING"/>
             <column header="id_parent" type="STRING"/>
         </loadData>
-        <loadData tableName="app_permission" file="com/dariawan/gospel/db/data/permission.csv">
+        <loadData tableName="dar_permission" file="com/dariawan/gospel/db/data/permission.csv">
             <column header="id" type="STRING"/>
             <column header="permission_label" type="STRING"/>
             <column header="permission_value" type="STRING"/>
         </loadData>
-        <loadData tableName="app_role" file="com/dariawan/gospel/db/data/role.csv">
+        <loadData tableName="dar_role" file="com/dariawan/gospel/db/data/role.csv">
             <column header="id" type="STRING"/>
             <column header="name" type="STRING"/>
             <column header="description" type="STRING"/>
         </loadData>
-        <loadData tableName="app_role_menu" file="com/dariawan/gospel/db/data/role_menu.csv">
+        <loadData tableName="dar_role_menu" file="com/dariawan/gospel/db/data/role_menu.csv">
             <column header="id_role" type="STRING"/>
             <column header="id_menu" type="STRING"/>
         </loadData>
-        <loadData tableName="app_role_permission" file="com/dariawan/gospel/db/data/role_permission.csv">
+        <loadData tableName="dar_role_permission" file="com/dariawan/gospel/db/data/role_permission.csv">
             <column header="id_role" type="STRING"/>
             <column header="id_permission" type="STRING"/>
         </loadData>
-        <loadData tableName="app_user" file="com/dariawan/gospel/db/data/user.csv">
+        <loadData tableName="dar_user" file="com/dariawan/gospel/db/data/user.csv">
             <column header="id" type="STRING"/>
             <column header="username" type="STRING"/>
             <column header="first_name" type="STRING"/>
