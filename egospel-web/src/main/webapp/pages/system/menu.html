@@ -7,7 +7,27 @@
     You may not use this software if you have not validly acquired a license for the software from Desson Ariawan or its licensed distributors.
 
 -->
-                    <select ng-model="currentMenu.parent.id" data-placeholder="-- Select One --">
+<div class="row">
+    <div class="col-md-10 well-large">
+        <h1>Form Menu</h1>
+        <form class="form-horizontal" name="formEdit">
+            <div class="form-group" ng-class="{error: formEdit.label.$invalid}">
+                <label class="control-label col-sm-2" for="label">Label : &nbsp;</label>
+                <div class="col-sm-6">                     
+                    <input class="form-control" type="text" id="label" name="label" placeholder="Label Menu" ng-model="currentMenu.label" required>
+                </div>
+                <span ng-show="formEdit.label.$error.required" class="help-block col-sm-2">Required</span>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="action">Action : &nbsp;</label>
+                <div class="col-sm-6">                     
+                    <input class="form-control" type="text" id="action" name="action" placeholder="Action / URL" ng-model="currentMenu.action">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="parent">Parent : &nbsp;</label>
+                <div class="col-sm-6">
+                    <select id="parent" ng-model="currentMenu.parent.id" data-placeholder="-- Select One --">
                         <option></option>
                         <option ng-repeat="menu in parentSelection" value="{{menu.id}}">{{menu.label}}</option>
                     </select>

@@ -4,13 +4,13 @@ angular.module('dallanube.controller', ['dallanube.service', 'ngUpload'])
             }])
         .controller('MenubarController', ['$http', '$scope', function($http, $scope) {
                 $scope.userinfo = {};
-                $http.get('homepage/userinfo').success(function(data) {
+                $http.get('gospel/homepage/userinfo').success(function(data) {
                     $scope.userinfo = data;
                 });
             }])
         .controller('AboutController', ['$http', '$scope', function($http, $scope) {
                 $scope.appinfo = {};
-                $http.get('homepage/appinfo').success(function(data) {
+                $http.get('gospel/homepage/appinfo').success(function(data) {
                     $scope.appinfo = data;
                 });
             }])
