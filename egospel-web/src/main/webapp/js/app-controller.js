@@ -216,8 +216,9 @@ angular.module('gospel.controller', ['gospel.service', 'ngUpload'])
                     });
                 };
                 $scope.add = function() {
-                    $scope.currentPost = null;
-                    $scope.original = null;
+                    //$scope.currentPost = null;
+                    //$scope.original = null;
+                    $location.path('/content/post-new');
                 }
                 $scope.save = function() {
                     //construct object
@@ -622,6 +623,7 @@ angular.module('gospel.controller', ['gospel.service', 'ngUpload'])
                     });
                 }
                 $scope.isClean = function() {
+                    // not really equal if undefined or null
                     return angular.equals($scope.original, $scope.currentUser);
                 }
 //        $scope.isUsernameAvailable = function(value){
