@@ -184,11 +184,6 @@ angular.module('gospel.controller', ['gospel.service', 'ngUpload'])
                 }
             }])
         .controller('PostController', ['$scope', '$location', 'PostService', 'stagingProp', function($scope, $location, PostService, stagingProp) {
-                //$scope.posts = PostService.query();
-//        $scope.go = function ( path ) {
-//            $location.path( path );
-//        };
-
                 $scope.reloadPostpage = function(page) {
                     if (!page || page < 0) {
                         page = 0;
@@ -211,37 +206,24 @@ angular.module('gospel.controller', ['gospel.service', 'ngUpload'])
                         stagingProp.setModel('post');
                         stagingProp.setItem($scope.currentPost.id);
 
-                        //$window.location.href = '/post-new';
                         $location.path('/content/post-new');
                     });
+                };                
+                $scope.prepareDelete = function(x) {
+                    if (x.id == null) {
+                        return;
+                    }
+                    $scope.deletePost = x;
                 };
                 $scope.add = function() {
-                    //$scope.currentPost = null;
-                    //$scope.original = null;
                     $location.path('/content/post-new');
-                }
-                $scope.save = function() {
-                    //construct object
-                    //$scope.currentPost = PostService.getDummyPost();
-                    $scope.currentPost.author = {};//ApplicationSessionsService.getCurrentUser();           
-
-                    //$scope.currentPost.postOn = undefined;
-                    //$scope.currentPost.postStatus = 'draft';
-                    //$scope.currentPost.commentStatus = 'open';
-                    //$scope.currentPost.postModified = undefined;
-
-                    PostService.save($scope.currentPost)
-                            .success(function() {
-                                $scope.posts = PostService.query();
-                                $scope.add();
-                            });
                 }
                 $scope.remove = function(x) {
                     if (x.id == null) {
                         return;
                     }
                     PostService.remove(x).success(function() {
-                        $scope.posts = PostService.query();
+                        $scope.reloadPostpage();
                     });
                 }
                 $scope.isClean = function() {
@@ -272,8 +254,8 @@ angular.module('gospel.controller', ['gospel.service', 'ngUpload'])
                         $scope.edit(stagingProp.getItem());
                     }
                     else {
-                        $scope.currentPost = null;
-                        $scope.original = null;
+                        $scope.currentPost = {};
+                        $scope.original = {};
                     }
                     stagingProp.setModel('empty');
                 }
@@ -298,6 +280,17 @@ angular.module('gospel.controller', ['gospel.service', 'ngUpload'])
                                 // leave it alone  
                                 //$scope.posts = PostService.query();
                                 //$scope.add();
+                                if ($scope.currentPost.id==null) { // new record
+                                    // force to return to post list page
+                                    $('#saved').show();
+                                    setTimeout(function() {
+                                        $scope.$apply(function() {
+                                            $('#saved').hide();
+                                            $location.path('/content/post');
+                                        });
+                                    }, 1000);
+                                }
+                                // else if edit, stay in the page
                             });
                 }
                 $scope.remove = function(x) {
