@@ -2,7 +2,7 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
-    <changeSet id="1" author="desson">
+    <changeSet id="create_tables" author="desson">
         <createTable tableName="dar_config">
             <column name="id" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false" />
@@ -17,6 +17,7 @@
                 <constraints nullable="false" />
             </column>
         </createTable>
+        
         <createTable tableName="dar_menu">
             <column name="id" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false" />
@@ -56,6 +57,7 @@
             </column>
             <column name="description" type="varchar(255)" />
         </createTable>
+        
         <createTable tableName="dar_role_permission">
             <column name="id_role" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false" />
@@ -64,6 +66,7 @@
                 <constraints primaryKey="true" nullable="false" />
             </column>
         </createTable>
+        
         <createTable tableName="dar_role_menu">
             <column name="id_role" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false" />
@@ -72,6 +75,7 @@
                 <constraints primaryKey="true" nullable="false" />
             </column>
         </createTable>
+        
         <createTable tableName="dar_user">
             <column name="id" type="varchar(255)">
                 <constraints primaryKey="true" nullable="false" />
@@ -138,7 +142,8 @@
             <append value=" engine innodb" />
         </modifySql>
     </changeSet>
-    <changeSet id="2" author="desson">
+    
+    <changeSet id="create_foreign_keys" author="desson">
         <addForeignKeyConstraint
             constraintName="fk_menu_parent"
             baseColumnNames="id_parent"
@@ -204,7 +209,8 @@
             referencedColumnNames="id"
         />
     </changeSet>
-    <changeSet id="3" author="desson">
+    
+    <changeSet id="load_data" author="desson">
         <loadData tableName="dar_menu" file="com/dariawan/gospel/db/data/menu.csv">
             <column header="id" type="STRING"/>
             <column header="label" type="STRING"/>
