@@ -105,13 +105,9 @@ public class PostControllerTestIT extends BaseControllerTestIT {
 
         try {
             // display to console
-            System.out.println(mapper.writeValueAsString(x));
-        } catch (JsonGenerationException e) {
-            e.printStackTrace();
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            *.println(mapper.writeValueAsString(x));
+        } catch (JsonGenerationException | JsonMappingException | IOException e) {
+            //e.printStackTrace();
         }
         */
         
@@ -154,7 +150,7 @@ public class PostControllerTestIT extends BaseControllerTestIT {
     public void testFindAll() {
         String target4page = target + "4page";
         
-//        System.out.println(with().auth().form(username, password, new FormAuthConfig(login, "j_username", "j_password"))
+//        *.println(with().auth().form(username, password, new FormAuthConfig(login, "j_username", "j_password"))
 //            .contentType("application/json").get(target4page).getBody().asString());
         
         with()

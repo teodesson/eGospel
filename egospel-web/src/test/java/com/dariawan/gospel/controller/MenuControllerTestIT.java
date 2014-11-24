@@ -42,7 +42,6 @@ public class MenuControllerTestIT extends BaseControllerTestIT {
     
     @Test
     public void testSaveUpdateDelete() {
-
         Menu x = new Menu();
         x.setLabel("Tryout Menu");
         x.setAction("test");
@@ -50,7 +49,6 @@ public class MenuControllerTestIT extends BaseControllerTestIT {
         x.setOrder(99);
 
         String id = testSave(target, x);
-        System.out.println("Id : " + id);
         testGetExistingById(id, x);
         
         x.setLabel("Change Label");
@@ -126,7 +124,7 @@ public class MenuControllerTestIT extends BaseControllerTestIT {
 
     @Test
     public void testFindAll() {
-//        System.out.println(with().auth().form(username, password, new FormAuthConfig(login, "j_username", "j_password"))
+//        *.println(with().auth().form(username, password, new FormAuthConfig(login, "j_username", "j_password"))
 //                .contentType("application/json").get(target).getBody().asString());
         with()
                 .auth().form(username, password, new FormAuthConfig(login, "j_username", "j_password"))

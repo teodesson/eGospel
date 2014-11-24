@@ -42,13 +42,11 @@ public class RoleControllerTestIT extends BaseControllerTestIT {
     
     @Test
     public void testSaveUpdateDelete() {
-
         Role x = new Role();
         x.setName("Tryout Role");
         x.setDescription("test");
 
         String id = testSave(target, x);
-        System.out.println("Id : " + id);
         testGetExistingById(id, x);
         
         x.setName("Change Label");

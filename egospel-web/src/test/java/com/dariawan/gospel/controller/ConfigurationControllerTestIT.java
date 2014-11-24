@@ -57,9 +57,7 @@ public class ConfigurationControllerTestIT extends BaseControllerTestIT {
 
     @Test
     public void testSaveUpdateDelete() {
-
         String id = testSave(target);
-        System.out.println("Id : " + id);
         testGetExistingById(id, "tryout", "Tryout Configuration", "test");
         testUpdateExisting(id, "tryout", "Tryout Configuration 001", "test123");
         testGetExistingById(id, "tryout", "Tryout Configuration 001", "test123");
@@ -88,8 +86,7 @@ public class ConfigurationControllerTestIT extends BaseControllerTestIT {
         return id;
     }
 
-    private void testGetExistingById(String id, String name, String label,
-            String value) {
+    private void testGetExistingById(String id, String name, String label, String value) {
         with().header("Accept", "application/json")
                 .auth().form(username, password, new FormAuthConfig(login, "j_username", "j_password"))
                 .expect()

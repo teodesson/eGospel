@@ -42,7 +42,6 @@ public class UserControllerTestIT extends BaseControllerTestIT {
 
     @Test
     public void testSaveUpdateDelete() {
-
         Role r = new Role();
         r.setId("superuser");
 
@@ -55,7 +54,6 @@ public class UserControllerTestIT extends BaseControllerTestIT {
         x.setRole(r);
 
         String id = testSave(target, x);
-        System.out.println("Id : " + id);
         testGetExistingById(id, x);
 
         x.setLastName("Changed");
@@ -67,20 +65,6 @@ public class UserControllerTestIT extends BaseControllerTestIT {
     }
 
     private String testSave(String target, User x) {
-//        // get User as JSON
-//        ObjectMapper mapper = new ObjectMapper();
-//
-//        try {
-//            // display to console
-//            System.out.println(mapper.writeValueAsString(x));
-//        } catch (JsonGenerationException e) {
-//            e.printStackTrace();
-//        } catch (JsonMappingException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
         String location = given()
                 .auth().form(username, password, new FormAuthConfig(login, "j_username", "j_password"))
                 .contentType("application/json")

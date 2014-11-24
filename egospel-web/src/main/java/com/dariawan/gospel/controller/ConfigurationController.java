@@ -82,21 +82,18 @@ public class ConfigurationController extends BaseController {
         logger.info("Resume saved to {}", resumeTarget.getAbsolutePath());
         logger.info("Photo saved to {}", photoTarget.getAbsolutePath());
 
-        //System.out.println(resume.getSize());
         if (resume.getSize() == FILE_SIZE_RESUME) {
             result.put("resume", "success");
         } else {
             result.put("resume", "error in size");
         }
 
-        //System.out.println(photo.getSize());
         if (photo.getSize() == FILE_SIZE_PHOTO) {
             result.put("photo", "success");
         } else {
             result.put("photo", "error in size");
         }
 
-        //System.out.println(description);
         if ("John's files".equals(description)) {
             result.put("description", "success");
         } else {

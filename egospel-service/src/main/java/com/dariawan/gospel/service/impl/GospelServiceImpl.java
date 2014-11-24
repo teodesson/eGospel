@@ -329,7 +329,6 @@ public class GospelServiceImpl implements GospelService {
 
     @Override
     public void delete(User m) {
-        //System.out.println("delete " + m.getId());
         userDao.delete(m);
     }
 
