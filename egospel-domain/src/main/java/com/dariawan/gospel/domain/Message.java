@@ -18,5 +18,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "dar_message")
 public class Message extends BaseMessage implements Serializable {
-    // empty
+    
+    private static final long serialVersionUID = 215425233913424L;
 }

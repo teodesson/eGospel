@@ -24,6 +24,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name = "dar_permission")
 public class Permission implements Serializable {
+    
+    private static final long serialVersionUID = 195752524815764L;
+    
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")

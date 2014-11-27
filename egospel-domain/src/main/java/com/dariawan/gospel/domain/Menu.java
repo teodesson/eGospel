@@ -29,6 +29,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name = "dar_menu")
 public class Menu implements Serializable {
 
+    private static final long serialVersionUID = 19589241915764L;
+    
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")
@@ -59,59 +61,101 @@ public class Menu implements Serializable {
     @JoinColumn(name = "id_parent")
     private Menu parent;
 
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * @param id the id to set
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * @return the action
+     */
     public String getAction() {
         return action;
     }
 
+    /**
+     * @param action the action to set
+     */
     public void setAction(String action) {
         this.action = action;
     }
 
+    /**
+     * @return the label
+     */
     public String getLabel() {
         return label;
     }
 
+    /**
+     * @param label the label to set
+     */
     public void setLabel(String label) {
         this.label = label;
     }
 
-    public Menu getParent() {
-        return parent;
-    }
-
-    public void setParent(Menu parent) {
-        this.parent = parent;
-    }
-
+    /**
+     * @return the level
+     */
     public Integer getLevel() {
         return level;
     }
 
+    /**
+     * @param level the level to set
+     */
     public void setLevel(Integer level) {
         this.level = level;
     }
 
+    /**
+     * @return the order
+     */
     public Integer getOrder() {
         return order;
     }
 
+    /**
+     * @param order the order to set
+     */
     public void setOrder(Integer order) {
         this.order = order;
     }
 
+    /**
+     * @return the options
+     */
     public String getOptions() {
         return options;
     }
 
+    /**
+     * @param options the options to set
+     */
     public void setOptions(String options) {
         this.options = options;
+    }
+
+    /**
+     * @return the parent
+     */
+    public Menu getParent() {
+        return parent;
+    }
+
+    /**
+     * @param parent the parent to set
+     */
+    public void setParent(Menu parent) {
+        this.parent = parent;
     }
 }

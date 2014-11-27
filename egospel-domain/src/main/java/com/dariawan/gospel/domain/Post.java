@@ -25,6 +25,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name = "dar_post")
 public class Post extends BaseMessage implements Serializable {
     
+    private static final long serialVersionUID = 555422283915764L;
+    
     // post_date_gmt
     
     @NotNull

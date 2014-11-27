@@ -7,6 +7,7 @@
  */
 package com.dariawan.gospel.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author Desson Ariawan <teodesson@yahoo.com>
  */
 @MappedSuperclass
-public class BaseMessage {
+public class BaseMessage implements Serializable {
     
     @Id
     @GeneratedValue(generator = "system-uuid")

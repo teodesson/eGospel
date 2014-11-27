@@ -28,6 +28,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name = "dar_config")
 @XmlRootElement(name = "config")
 public class Configuration implements Serializable {
+    
+    private static final long serialVersionUID = 195425233915764L;
 
     @Id
     @GeneratedValue(generator = "system-uuid")
@@ -49,37 +51,61 @@ public class Configuration implements Serializable {
     @Column(nullable = false)
     private String value;
 
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * @param id the id to set
+     */
     @XmlElement
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * @return the name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name the name to set
+     */
     @XmlElement
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * @return the label
+     */
     public String getLabel() {
         return label;
     }
 
+    /**
+     * @param label the label to set
+     */
     @XmlElement
     public void setLabel(String label) {
         this.label = label;
     }
 
+    /**
+     * @return the value
+     */
     public String getValue() {
         return value;
     }
 
+    /**
+     * @param value the value to set
+     */
     @XmlElement
     public void setValue(String value) {
         this.value = value;

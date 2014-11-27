@@ -32,6 +32,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name = "dar_role")
 public class Role implements Serializable {
     
+    private static final long serialVersionUID = 575425231415764L;
+    
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")

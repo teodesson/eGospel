@@ -29,6 +29,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name = "dar_user")
 public class User implements Serializable {
     
+    private static final long serialVersionUID = 985425221915764L;
+    
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")
@@ -93,42 +95,72 @@ public class User implements Serializable {
     private boolean credentialsExpired;
     */
     
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * @param id the id to set
+     */
     public void setId(String id) {
         this.id = id;
     }
-
+    
+    /**
+     * @return the username
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * @param username the username to set
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     * @return the password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * @param password the password to set
+     */
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
+    /**
+     * @return the confirmPassword
+     */
     public String getConfirmPassword() {
         return confirmPassword;
     }
 
+    /**
+     * @param confirmPassword the confirmPassword to set
+     */
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
 
+    /**
+     * @return the passwordHint
+     */
     public String getPasswordHint() {
         return passwordHint;
     }
 
+    /**
+     * @param passwordHint the passwordHint to set
+     */
     public void setPasswordHint(String passwordHint) {
         this.passwordHint = passwordHint;
     }
@@ -143,22 +175,29 @@ public class User implements Serializable {
     }
     */
 
+    
+
+    /**
+     * @return the firstName
+     */
     public String getFirstName() {
         return firstName;
     }
 
+    /**
+     * @param firstName the firstName to set
+     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    /**
+     * @return the lastName
+     */
     public String getLastName() {
         return lastName;
     }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
+    
     /**
      * Returns the full name.
      *
@@ -166,53 +205,96 @@ public class User implements Serializable {
      */
     @JsonIgnore
     public String getFullName() {
-        return getFirstName() + ' ' + getLastName();
+        return firstName + ' ' + lastName;
     }
-    
+
+    /**
+     * @param lastName the lastName to set
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    /**
+     * @return the role
+     */
     public Role getRole() {
         return role;
     }
 
+    /**
+     * @param role the role to set
+     */
     public void setRole(Role role) {
         this.role = role;
     }
-    
+
+    /**
+     * @return the email
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * @param email the email to set
+     */
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
+    /**
+     * @return the photo
+     */
     public String getPhoto() {
         return photo;
     }
-    
+
+    /**
+     * @param photo the photo to set
+     */
     public void setPhoto(String photo) {
         this.photo = photo;
     }
 
+    /**
+     * @return the phoneNumber
+     */
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
+    /**
+     * @param phoneNumber the phoneNumber to set
+     */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
+    /**
+     * @return the website
+     */
     public String getWebsite() {
         return website;
     }
 
+    /**
+     * @param website the website to set
+     */
     public void setWebsite(String website) {
         this.website = website;
     }
 
+    /**
+     * @return the enabled
+     */
     public boolean isEnabled() {
         return enabled;
     }
 
+    /**
+     * @param enabled the enabled to set
+     */
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
@@ -230,7 +312,7 @@ public class User implements Serializable {
     public void setAddress(Address address) {
         this.address = address;
     }
-
+    
     /*
     public boolean isAccountExpired() {
         return accountExpired;
