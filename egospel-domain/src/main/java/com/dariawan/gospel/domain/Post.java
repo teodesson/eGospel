@@ -11,15 +11,10 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
@@ -28,30 +23,9 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Entity
 @Table(name = "dar_post")
-public class Post implements Serializable {
-    
-    @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
-    private String id;
-    
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_author", nullable = false)
-    private User author;
-     
-    @NotNull
-    @Column(name = "post_on", nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date postOn = new Date();
+public class Post extends BaseMessage implements Serializable {
     
     // post_date_gmt
-    
-    @NotNull
-    @NotEmpty
-    @Column(name = "content", nullable = false)
-    @Type(type="text")
-    private String content;
     
     @NotNull
     @NotEmpty
@@ -77,7 +51,7 @@ public class Post implements Serializable {
     // pinged
     
     @Column(name = "post_modified")
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date postModified = new Date();
     
     // post_modified_gmt
@@ -94,74 +68,72 @@ public class Post implements Serializable {
     // post_mime_type
     // comment_count
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
-    public Date getPostOn() {
-        return postOn;
-    }
-
-    public void setPostOn(Date postOn) {
-        this.postOn = postOn;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
+    /**
+     * @return the title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * @param title the title to set
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * @return the postStatus
+     */
     public String getPostStatus() {
         return postStatus;
     }
 
+    /**
+     * @param postStatus the postStatus to set
+     */
     public void setPostStatus(String postStatus) {
         this.postStatus = postStatus;
     }
 
+    /**
+     * @return the commentStatus
+     */
     public String getCommentStatus() {
         return commentStatus;
     }
 
+    /**
+     * @param commentStatus the commentStatus to set
+     */
     public void setCommentStatus(String commentStatus) {
         this.commentStatus = commentStatus;
     }
 
+    /**
+     * @return the postModified
+     */
     public Date getPostModified() {
         return postModified;
     }
 
+    /**
+     * @param postModified the postModified to set
+     */
     public void setPostModified(Date postModified) {
         this.postModified = postModified;
     }
 
+    /**
+     * @return the postType
+     */
     public String getPostType() {
         return postType;
     }
 
+    /**
+     * @param postType the postType to set
+     */
     public void setPostType(String postType) {
         this.postType = postType;
     }

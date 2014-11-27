@@ -60,44 +60,74 @@ public class Role implements Serializable {
         inverseJoinColumns=@JoinColumn(name="id_menu", nullable=false)
     )
     @OrderBy(value="level,order")
-    private Set<Menu> menuSet = new TreeSet<Menu>();
+    private Set<Menu> menuSet = new TreeSet<>();
 
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * @param id the id to set
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * @return the name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name the name to set
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * @return the description
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * @param description the description to set
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     * @return the permissionSet
+     */
     public Set<Permission> getPermissionSet() {
         return permissionSet;
     }
 
+    /**
+     * @param permissionSet the permissionSet to set
+     */
     public void setPermissionSet(Set<Permission> permissionSet) {
         this.permissionSet = permissionSet;
     }
 
+    /**
+     * @return the menuSet
+     */
     public Set<Menu> getMenuSet() {
         return menuSet;
     }
 
+    /**
+     * @param menuSet the menuSet to set
+     */
     public void setMenuSet(Set<Menu> menuSet) {
         this.menuSet = menuSet;
     }
