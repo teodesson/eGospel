@@ -10,13 +10,13 @@
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<prudent>true</prudent>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<!-- change file every hour -->
+			<!-- change file every day -->
 			<fileNamePattern>
-				${catalina.home:-.}/logs/%d{yyyy-MM-dd_HH}/tryout-${spring.profiles.active:-development}.log
+				${catalina.home:-.}/logs/%d{yyyy-MM-dd}/gospel-${spring.profiles.active:-development}.log
 			</fileNamePattern>
 
-			<!-- save file for one month period (24 * 31) -->
-			<maxHistory>384</maxHistory>
+			<!-- save file for one year period -->
+			<maxHistory>365</maxHistory>
 		</rollingPolicy>
 		<encoder>
 			<pattern>%d %-5level %logger{35} - %msg %n</pattern>
